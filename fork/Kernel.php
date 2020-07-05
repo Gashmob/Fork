@@ -15,6 +15,8 @@ class Kernel
     public function __construct(array $router)
     {
         $this->router = $router;
+
+        Database::connect();
     }
 
 

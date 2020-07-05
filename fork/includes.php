@@ -1,6 +1,7 @@
 <?php
 
 include_once 'fork/Kernel.php';
+include_once 'fork/Database.php';
 
 include_once 'fork/response/Response.php';
 include_once 'fork/response/TemplateResponse.php';
