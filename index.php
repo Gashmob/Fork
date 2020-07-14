@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 include_once './fork/includes.php';
 include_once './src/Controller/HomeController.php';
 

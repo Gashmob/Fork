@@ -17,6 +17,7 @@ class Kernel
         $this->router = $router;
 
         Database::connect();
+        Session::start();
     }
 
 
