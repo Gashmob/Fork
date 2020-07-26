@@ -8,3 +8,5 @@ include_once 'fork/Cookie.php';
 include_once 'fork/response/Response.php';
 include_once 'fork/response/TemplateResponse.php';
 include_once 'fork/response/RedirectResponse.php';
+
+include_once 'fork/yaml_editor/includes.php';
