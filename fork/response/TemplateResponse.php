@@ -12,7 +12,7 @@ class TemplateResponse
      * TemplateResponse constructor.
      * @param string $template
      */
-    public function __construct(string $template)
+    public function __construct($template)
     {
         $this->template = $template;
     }
@@ -20,7 +20,7 @@ class TemplateResponse
     /**
      * @return string
      */
-    public function getTemplate(): string
+    public function getTemplate()
     {
         return $this->template;
     }

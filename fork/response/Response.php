@@ -12,7 +12,7 @@ class Response
      * Response constructor.
      * @param string $content
      */
-    public function __construct(string $content)
+    public function __construct($content)
     {
         $this->content = $content;
     }
@@ -20,7 +20,7 @@ class Response
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getContent()
     {
         return $this->content;
     }

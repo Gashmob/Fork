@@ -12,7 +12,7 @@ class RedirectResponse
      * RedirectResponse constructor.
      * @param string $routeName
      */
-    public function __construct(string $routeName)
+    public function __construct($routeName)
     {
         $this->routeName = $routeName;
     }
@@ -20,7 +20,7 @@ class RedirectResponse
     /**
      * @return string
      */
-    public function getRouteName(): string
+    public function getRouteName()
     {
         return $this->routeName;
     }

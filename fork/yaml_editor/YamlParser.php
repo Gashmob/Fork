@@ -80,7 +80,7 @@ abstract class YamlParser
      * @param array $array
      * @return array
      */
-    private static function set(string $path, $value, array $array)
+    private static function set($path, $value, array $array)
     {
         return self::getArray(self::cut($path, '.'), $value, $array);
     }
@@ -107,7 +107,7 @@ abstract class YamlParser
      * @param string $line
      * @return mixed|string
      */
-    private static function getName(string $line)
+    private static function getName($line)
     {
         return self::isValue($line) ? '' : self::cut(trim($line), ':')[0];
     }
@@ -116,7 +116,7 @@ abstract class YamlParser
      * @param string $line
      * @return string
      */
-    private static function getValue(string $line)
+    private static function getValue($line)
     {
         $l = trim($line);
 
@@ -163,7 +163,7 @@ abstract class YamlParser
      * @param string $line
      * @return bool
      */
-    private static function isValue(string $line)
+    private static function isValue($line)
     {
         return !strstr($line, ':');
     }
@@ -172,7 +172,7 @@ abstract class YamlParser
      * @param string $line
      * @return bool
      */
-    private static function isString(string $line)
+    private static function isString($line)
     {
         $l = trim($line);
         $result = false;
@@ -188,7 +188,7 @@ abstract class YamlParser
      * @param string $line
      * @return bool
      */
-    private static function isListElement(string $line)
+    private static function isListElement($line)
     {
         $l = trim($line);
         return self::isValue($line) && (strlen($l) > 0 ? $l[0] == '-' : false);
@@ -198,7 +198,7 @@ abstract class YamlParser
      * @param string $line
      * @return int
      */
-    private static function countTabulation(string $line)
+    private static function countTabulation($line)
     {
         $result = 0;
 
@@ -222,7 +222,7 @@ abstract class YamlParser
      * @param string $delimiter
      * @return array
      */
-    private static function cut(string $sentence, string $delimiter)
+    private static function cut($sentence, $delimiter)
     {
         $result = [];
         $word = '';
@@ -249,7 +249,7 @@ abstract class YamlParser
      * @param int $n
      * @return string
      */
-    private static function removeLastPath(string $path, int $n = 1)
+    private static function removeLastPath($path, $n = 1)
     {
         $t = self::cut($path, '.');
 
@@ -268,7 +268,7 @@ abstract class YamlParser
      * @param string $value
      * @return bool
      */
-    private static function isNumber(string $value)
+    private static function isNumber($value)
     {
         $numbers = '1234567890';
 
@@ -290,7 +290,7 @@ abstract class YamlParser
      * @param int $nbTab
      * @return string
      */
-    private static function getTab(int $nbTab)
+    private static function getTab($nbTab)
     {
         $result = '';
 
@@ -302,7 +302,7 @@ abstract class YamlParser
         return $result;
     }
 
-    private static function arrayToYaml(array $array, int $nbTab)
+    private static function arrayToYaml(array $array, $nbTab)
     {
         $result = '';
 

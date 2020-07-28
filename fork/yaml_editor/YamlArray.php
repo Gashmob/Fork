@@ -21,7 +21,7 @@ class YamlArray
      * @param string $path
      * @param $value
      */
-    public function set(string $path, $value)
+    public function set($path, $value)
     {
         $this->array = YamlParser::getArray(explode('.', $path), $value, $this->array);
     }
@@ -31,7 +31,7 @@ class YamlArray
      * @return mixed|string|array
      * @throws PathNotFoundException
      */
-    public function get(string $path)
+    public function get($path)
     {
         $tab = explode('.', $path);
 
@@ -60,7 +60,7 @@ class YamlArray
     /**
      * @return array
      */
-    public function getArray(): array
+    public function getArray()
     {
         return $this->array;
     }

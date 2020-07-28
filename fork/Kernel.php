@@ -24,7 +24,7 @@ class Kernel
     /**
      * @param string $request
      */
-    public function handle(string $request)
+    public function handle($request)
     {
         if (isset($this->router[$request])) {
             if (isset($this->router[$request]['controller'])) {

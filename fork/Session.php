@@ -12,7 +12,7 @@ abstract class Session
      * @param string $name
      * @return mixed|null
      */
-    public static function get(string $name)
+    public static function get($name)
     {
         return isset($_SESSION[$name]) ? $_SESSION[$name] : null;
     }
@@ -21,7 +21,7 @@ abstract class Session
      * @param string $name
      * @param mixed $value
      */
-    public static function set(string $name, $value)
+    public static function set($name, $value)
     {
         $_SESSION[$name] = $value;
     }

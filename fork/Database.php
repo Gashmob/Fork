@@ -24,7 +24,7 @@ abstract class Database
      * @param string $query
      * @return bool|mysqli_result
      */
-    public static function query(string $query)
+    public static function query($query)
     {
         if (self::$mysqli == null) {
             self::connect();
@@ -37,7 +37,7 @@ abstract class Database
      * @param string $preparedQuery
      * @return bool
      */
-    public static function prepare(string $preparedQuery)
+    public static function prepare($preparedQuery)
     {
         if (self::$stmt = self::$mysqli->prepare($preparedQuery)) {
             return true;
@@ -50,7 +50,7 @@ abstract class Database
      * @param int $number
      * @return bool
      */
-    public static function setInt(int $number)
+    public static function setInt($number)
     {
         return self::$stmt->bind_param('i', $number);
     }
@@ -59,7 +59,7 @@ abstract class Database
      * @param float $number
      * @return bool
      */
-    public static function setFloat(float $number)
+    public static function setFloat($number)
     {
         return self::$stmt->bind_param('d', $number);
     }
@@ -68,7 +68,7 @@ abstract class Database
      * @param string $str
      * @return bool
      */
-    public static function setString(string $str)
+    public static function setString($str)
     {
         return self::$stmt->bind_param('s', $str);
     }
