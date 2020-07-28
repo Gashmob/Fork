@@ -1,5 +1,10 @@
 <?php
 
+namespace Fork;
+
+use Fork\Response\RedirectResponse;
+use Fork\Response\Response;
+use Fork\Response\TemplateResponse;
 
 class Kernel
 {

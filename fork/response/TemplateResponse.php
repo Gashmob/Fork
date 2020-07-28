@@ -1,5 +1,6 @@
 <?php
 
+namespace Fork\Response;
 
 class TemplateResponse
 {

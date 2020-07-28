@@ -23,12 +23,13 @@ class Autoloader
             self::$fileIterator = new RecursiveIteratorIterator($directory, RecursiveIteratorIterator::LEAVES_ONLY);
         }
 
-        $filename = $className . self::$fileExt;
 
+        $f = explode('\\', $className);
+        $filename = end($f) . self::$fileExt;
         foreach (self::$fileIterator as $file) {
-            if (strtolower($file->getFilename()) == strtolower($filename)) {
+            if (strtolower($file->getFileName()) == strtolower($filename)) {
                 if ($file->isReadable())
-                    include_once $file->getPathname();
+                    include_once $file->getPathName();
                 break;
             }
         }
@@ -50,6 +51,3 @@ class Autoloader
         self::$pathTop = $pathTop;
     }
 }
-
-Autoloader::setFileExt('.php');
-spl_autoload_register('\Fork\Autoloader\Autoloader::load');

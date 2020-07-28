@@ -1,5 +1,10 @@
 <?php
 
+namespace Fork;
+
+use mysqli;
+use mysqli_result;
+use mysqli_stmt;
 
 abstract class Database
 {

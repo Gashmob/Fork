@@ -1,5 +1,6 @@
 <?php
 
+namespace Fork\Yaml_Editor;
 
 class YamlFile
 {

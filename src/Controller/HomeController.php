@@ -1,6 +1,8 @@
 <?php
 
-include_once 'fork/includes.php';
+namespace Controller;
+
+use Fork\Response\TemplateResponse;
 
 class HomeController
 {

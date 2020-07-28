@@ -1,5 +1,8 @@
 <?php
 
+namespace Fork\Yaml_Editor\Exceptions;
+
+use Exception;
 
 class NotYamlFileException extends Exception
 {
