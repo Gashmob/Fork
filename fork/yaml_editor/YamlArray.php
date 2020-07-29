@@ -2,6 +2,8 @@
 
 namespace Fork\Yaml_Editor;
 
+use Fork\Yaml_Editor\Exceptions\PathNotFoundException;
+
 class YamlArray
 {
     /**

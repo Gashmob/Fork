@@ -11,7 +11,7 @@ class Autoloader
 {
     protected static $fileExt = '.php';
 
-    protected static $pathTop = __DIR__;
+    protected static $pathTop;
 
     protected static $fileIterator = null;
 

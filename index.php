@@ -6,7 +6,6 @@ use Fork\Kernel;
 
 include_once 'fork/autoloader/Autoloader.php';
 
-Autoloader::setFileExt('.php');
 Autoloader::setPathTop(__DIR__);
 spl_autoload_register('\Fork\Autoloader\Autoloader::load');
 

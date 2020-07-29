@@ -2,9 +2,13 @@
 
 namespace Fork;
 
+use Fork\Database\DatabaseConnection;
+use Fork\Database\DatabaseCredentials;
 use Fork\Response\RedirectResponse;
 use Fork\Response\Response;
 use Fork\Response\TemplateResponse;
+use Fork\Yaml_Editor\YamlArray;
+use Fork\Yaml_Editor\YamlFile;
 
 class Kernel
 {
@@ -21,7 +25,21 @@ class Kernel
     {
         $this->router = $router;
 
-        Database::connect();
+        $config = new YamlArray(new YamlFile('config/config.yml'));
+        try {
+            DatabaseConnection::connect(new DatabaseCredentials(
+                $config->get('database.credentials.host'),
+                $config->get('database.credentials.user'),
+                $config->get('database.credentials.password'),
+                $config->get('database.credentials.dbName'),
+                $config->get('database.credentials.port')
+            ));
+        } catch (Database\Exceptions\ConnectionFailedException $e) {
+            die($e);
+        } catch (Yaml_Editor\Exceptions\PathNotFoundException $e) {
+            die($e);
+        }
+
         Session::start();
     }
 
