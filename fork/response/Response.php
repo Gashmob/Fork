@@ -1,6 +1,12 @@
 <?php
 
+namespace Fork\Response;
 
+/**
+ * Class Response
+ * Send a text response for the navigator
+ * @package Fork\Response
+ */
 class Response
 {
     /**
@@ -12,7 +18,7 @@ class Response
      * Response constructor.
      * @param string $content
      */
-    public function __construct(string $content)
+    public function __construct($content)
     {
         $this->content = $content;
     }
@@ -20,7 +26,7 @@ class Response
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getContent()
     {
         return $this->content;
     }

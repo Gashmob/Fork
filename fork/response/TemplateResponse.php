@@ -1,6 +1,12 @@
 <?php
 
+namespace Fork\Response;
 
+/**
+ * Class TemplateResponse
+ * Send a html response to the navigator via a template
+ * @package Fork\Response
+ */
 class TemplateResponse
 {
     /**
@@ -12,7 +18,7 @@ class TemplateResponse
      * TemplateResponse constructor.
      * @param string $template
      */
-    public function __construct(string $template)
+    public function __construct($template)
     {
         $this->template = $template;
     }
@@ -20,7 +26,7 @@ class TemplateResponse
     /**
      * @return string
      */
-    public function getTemplate(): string
+    public function getTemplate()
     {
         return $this->template;
     }
