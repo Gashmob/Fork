@@ -36,6 +36,14 @@ class PreparedQuery
     }
 
     /**
+     * Execute the query
+     */
+    public function execute()
+    {
+        $this->stmt->execute();
+    }
+
+    /**
      * Return the complete result of query
      * @return array|false
      */

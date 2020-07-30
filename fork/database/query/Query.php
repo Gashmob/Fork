@@ -31,6 +31,18 @@ class Query
     }
 
     /**
+     * Execute the query
+     */
+    public function execute()
+    {
+        try {
+            DatabaseConnection::getConnection()->query($this->query);
+        } catch (DatabaseNotConnectedException $e) {
+            die($e);
+        }
+    }
+
+    /**
      * Return the result of the query
      * @return array|bool
      */
