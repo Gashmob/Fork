@@ -7,12 +7,19 @@ ___
 
 Tutoriel
 ===
+### Sommaire
+- [Chapitre 1 : Le routeur](#chapitre-1--le-routeur)
+- [Chapitre 2 : Les contrôleurs](#chapitre-2--les-contrleurs)
+- [Chapitre 3 : Les templates](#chapitre-3--les-templates)
+- [Chapitre 4 : La base de données & autres](#chapitre-4--la-base-de-donnes--autres)
 
-Le routeur
----
-Fork utilise un routeur tout simple pour renvoyer les résultats des requêtes. Pour ajouter, enlever ou modifier des pages il suffit de modifier la variable `$routeur` qui se trouve dans le `index.php`.
+___
 
-Voici à quoi elle ressemble de base :
+### Chapitre 1 : Le routeur
+
+Fork comme la plupart des framework utilise un routeur pour renvoyer le résultat des requêtes. Dans notre cas il s'agit d'un routeur assez simple mais suffisant pour les petits sites.
+
+Pour ajouter, modifier et enlever des pages il suffit de modifier la variable `$router` qui se trouve dans le `index.php`.
 ```php
 $router = [
     '/' => [
@@ -21,23 +28,26 @@ $router = [
     ],
 ];
 ```
-Cette variable est donc un tableau qui associe des requêtes  à un second tableau. Dans ce deuxième tableau on a besoin de 2 lignes :
+Cette variable est donc un tableau qui associe des requêtes (`/` ici) à un second tableau. Dans ce deuxième tableau on a besoin de 2 lignes :
 
-- `name` Le nom de la route
+- `name` Le nom de la route. Nécessaire pour les redirections
 - `controller` La fonction associée
 
-Le nom de la route n'est pas obligatoire mais est recommandé si vous voulez utiliser des redirections. Par contre la fonction est obligatoire, c'est elle que le routeur va utiliser pour afficher votre contenu.
+La fonction associée est celle qui sera appelée quand cette route sera demandée.
 
-Pour ajouter une nouvelle route, il suffit donc de rajouter une entrée dans ce tableau, et de créer la fonction.
+Pour ajouter une route, il suffit donc de rajouter une entrée dans ce tableau et de créer la fonction associée.
 
-Le controlleur
----
-Les fonctions que vous devez renseigner dans le routeur sont contenues dans les controlleur. Un controlleur est une classe php avec des fonctions qui doivent retourner un objet de type `Response`, `TemplateResponse` ou `RedirectResponse`.
+### Chapitre 2 : Les contrôleurs
 
-`Response` va juste écrire la chaine de caractères que vous lui aurez passé.
+La fonction que vous allez renseigner dans le routeur, doit être situé dans un contrôleur. Un contrôleur est une classe php avec des fonctions qui doivent retourner une instance de `Response`, `TemplateResponse` ou `RedirectResponse`.
 
-`TemplateResponse` prend en paramètre le chemin vers un fichier php ou html qu'il va ensuite afficher dans votre navigateur. C'est la cas pour la page de base :
+- `Response` est utilisé pour renvoyer de simples chaines de caractères, il peut s'agir d'html, xml, yaml, ...
+- `TemplateResponse` est pour les cas ou vous utilisez des templates (voir [Chapitre 3](#chapitre-3--les-templates)). C'est le cas pour la page de base :
 ```php
+namespace Controller;
+
+use Fork\Response\TemplateResponse;
+
 class HomeController
 {
     public function homepage()
@@ -46,32 +56,22 @@ class HomeController
     }
 }
 ```
-Enfin `RedirectResponse` prend en paramètre le nom d'une route et redirige vers cette route.
+- `RedirectResponse` redirige vers la route dont on a spécifié le nom
 
-Les templates
----
-Quand votre controlleur renvoie une `TemplateResponse`, vous utiliser un fichier php ou html qui se situe dans le dossier `view`.
+Les contrôleurs se situent dans le dossier `src/Controller`
 
-Pour utiliser toute la puissance des templates, vous pouvez personnaliser le `base.php` :
+### Chapitre 3 : Les templates
+
+Dans ce chapitre nous allons approfondir le système de templates.
+
+Vous utilisez les templates dès que votre contrôleur renvoie une instance de `TemplateResponse`. Cette classe prend en paramètre dans son constructeur, le chemin vers votre template.
+Comme les exemples valent plus que les longs textes, en voici un :
+
+Dans le contrôleur :
 ```php
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8" />
-    <title><?= $title ?></title>
-    <link rel="shortcut icon" href="resources/img/fork.svg" />
-
-    <link rel="stylesheet" href="resources/css/base.css" />
-</head>
-
-<body>
-<?= $content ?>
-</body>
-</html>
+return new TemplateResponse('view/home/homepage.php');
 ```
-Vous créez votre page comme à chaque fois. Mais pour les morceaux qui vont différer entre charque page utilisez `<?= $variable ?>`.
-
-Ensuite dans le fichier que vous allez renseigner dans le controlleur vous donnez des valeurs à chacune des variables, et à la fin du fichier vous rajouter un `require` du template.
+Dans le fichier `homepage.php` :
 ```php
 <?php $title = 'Fork'; ?>
 
@@ -87,11 +87,69 @@ Ensuite dans le fichier que vous allez renseigner dans le controlleur vous donne
 
 <?php require_once 'view/base.php'; ?>
 ```
+Dans le fichier `base.php` :
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <title><?= $title ?></title>
+    <link rel="shortcut icon" href="resources/img/fork.svg"/>
 
-Les méthodes `ob_start()` et `ob_get_clean()` permettent de rentrer une grande chaine de caractères dans une variable, voir [Fonctions de bufferisation de sortie](https://www.php.net/manual/fr/ref.outcontrol.php).
+    <link rel="stylesheet" href="resources/css/base.css"/>
+</head>
 
-La base de données
----
-Bien évidemment vous pouvez utiliser une base de données sur votre site. Pour cela vous devez aller modifier la fonction `connect()` de la classe `Database`. Vous pourrez y renseigner les données pour se connecter à votre base de données.
+<body>
+<?= $content ?>
+</body>
+</html>
+```
+Un peu d'explication quand même. Votre contrôleur appelle le template `homepage.php`. Dans ce fichier, il y a 3 (non 4) lignes qui nous intéressent :
 
-Il vous suffira ensuite de créer dans le dossier `src` toutes vos fonctions pour la manipulation de vos données.
+1. `<?php $title= 'Fork'; ?>`
+2. `<?php ob_start(); ?>`
+3. `<?php $content = ob_get_clean(); ?>`
+4. `<?php require_once 'view/base.php'; ?>`
+
+La première ligne est une affectation de la variable `$title`, on en sera plus après. La seconde et la troisième ligne vont ensemble : les méthodes `ob_start()` et `ob_get_clean()` (voir [Fonctions de bufferisation de sortie](https://www.php.net/manual/fr/ref.outcontrol.php)) permettent de stocker une grande chaine de caractères dans une variable.
+À quoi sert cette variable ? Nous le verrons après. Et enfin la quatrième ligne (la plus intéressante), elle inclue le fichier `base.php`.
+
+Dans ce fichier il y a 2 lignes qui nous intéressent :
+
+1. `<?= $title ?>`
+2. `<?= $content ?>`
+
+Ces 2 variables (`$title` et `$content`) sont celle dont on a modifié la valeur précédemment. Ce qui va se passer est tout simplement qu'à la place de ces 2 lignes, on va avoir tout ce qui a été mis dans le fichier `homepage.php`.
+C'est ainsi que les templates fonctionnent.
+
+Vous définissez une base qui sera commune à toutes vos pages avec des variables aux endroits ou le contenu va changer. Vous donnez une valeur à ces variables dans un autre fichier qui inclue le premier. Et le tour est joué.
+
+### Chapitre 4 : La base de données & autres
+
+Dans ce dernier chapitre nous allons voir comment interroger votre base de données et 2 autres classes qui vous aideront.
+
+Fork implémente une série de classes qui vous permettront de facilement manipuler une base de données mysqli. Tout d'abord il faut donner les identifiants pour se connecter à la base de données. Cela se fait dans le fichier `config/config.yml` :
+```yaml
+database:
+  credentials:
+    host: "127.0.0.1"
+    user: "root"
+    password: ""
+    dbName: "likaton"
+    port: 3306
+```
+Une fois ces données rentrées, vous avez fait le plus grand, il ne vous reste plus qu'à faire toutes les fonctions dont vous avez besoin pour manipuler votre base de données.
+
+C'est là qu'interviennent 2 autres classes : `Query` et `PreparedQuery`. La première, basique, vous permettra d'envoyer des requêtes et de récupérer le résultat si besoin.
+```php
+$result = (new Query('SELECT * FROM user'))->getResult();
+(new Query('INSERT INTO user (login, password) VALUES (\'root\', \'rootpassword\')'))->execute();
+```
+La seconde vous permet de préparer des requêtes avec des paramètres.
+```php
+$query = new PreparedQuery('SELECT * FROM user WHERE login = ?');
+$query->setString('root');
+$result = $query->getOneOrNullResult();
+```
+
+Les 2 autres classes qui vont vous aider sont `Cookie` et `Session`. Elles vous permettront de manipuler plus facilement les variables de sessions et les cookies.
