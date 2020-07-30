@@ -2,6 +2,11 @@
 
 namespace Fork\Response;
 
+/**
+ * Class TemplateResponse
+ * Send a html response to the navigator via a template
+ * @package Fork\Response
+ */
 class TemplateResponse
 {
     /**

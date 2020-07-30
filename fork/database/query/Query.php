@@ -8,6 +8,11 @@ use Fork\Database\DatabaseConnection;
 use Fork\Database\Exceptions\DatabaseNotConnectedException;
 use mysqli_result;
 
+/**
+ * Class Query
+ * A simple mysqli query
+ * @package Fork\Database\Query
+ */
 class Query
 {
     /**
@@ -17,6 +22,7 @@ class Query
 
     /**
      * Query constructor.
+     * Take the complete query to the database
      * @param string $query
      */
     public function __construct($query)
@@ -25,6 +31,7 @@ class Query
     }
 
     /**
+     * Return the result of the query
      * @return array|bool
      */
     public function getResult()
@@ -49,6 +56,7 @@ class Query
     }
 
     /**
+     * Return the first row of query result
      * @return array|bool|null
      */
     public function getOneOrNullResult()

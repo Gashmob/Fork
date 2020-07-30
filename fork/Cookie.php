@@ -2,6 +2,11 @@
 
 namespace Fork;
 
+/**
+ * Class Cookie
+ * Allow to set and get cookie easily
+ * @package Fork
+ */
 abstract class Cookie
 {
     /**

@@ -7,6 +7,11 @@ namespace Fork\Autoloader;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
+/**
+ * Class Autoloader
+ * @package Fork\Autoloader
+ * @see https://github.com/Gashmob/Autoload
+ */
 class Autoloader
 {
     protected static $fileExt = '.php';

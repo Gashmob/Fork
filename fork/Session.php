@@ -2,6 +2,12 @@
 
 namespace Fork;
 
+/**
+ * Class Session
+ * Allow to set and get session variable easily
+ * You can clear the session with close() method
+ * @package Fork
+ */
 abstract class Session
 {
     public static function start()

@@ -10,6 +10,11 @@ use Fork\Response\TemplateResponse;
 use Fork\Yaml_Editor\YamlArray;
 use Fork\Yaml_Editor\YamlFile;
 
+/**
+ * Class Kernel
+ * The programme heart : is here that the requests is treat for render a response
+ * @package Fork
+ */
 class Kernel
 {
     /**

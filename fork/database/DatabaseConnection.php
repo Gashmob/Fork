@@ -8,6 +8,11 @@ use Fork\Database\Exceptions\ConnectionFailedException;
 use Fork\Database\Exceptions\DatabaseNotConnectedException;
 use mysqli;
 
+/**
+ * Class DatabaseConnection
+ * Connection to the database
+ * @package Fork\Database
+ */
 abstract class DatabaseConnection
 {
     /**
@@ -16,6 +21,8 @@ abstract class DatabaseConnection
     private static $connection;
 
     /**
+     * If not connected, connect to the database
+     * Throw an exception if the connection failed
      * @param DatabaseCredentials $databaseCredentials
      * @throws ConnectionFailedException
      */
@@ -37,6 +44,8 @@ abstract class DatabaseConnection
     }
 
     /**
+     * Return the connection to the database
+     * Throw an exception if we aren't connected
      * @return mysqli
      * @throws DatabaseNotConnectedException
      */

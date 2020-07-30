@@ -4,6 +4,11 @@
 namespace Fork\Database;
 
 
+/**
+ * Class DatabaseCredentials
+ * The credentials for connect to the database
+ * @package Fork\Database
+ */
 class DatabaseCredentials
 {
     /**

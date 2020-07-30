@@ -2,6 +2,11 @@
 
 namespace Fork\Response;
 
+/**
+ * Class Response
+ * Send a text response for the navigator
+ * @package Fork\Response
+ */
 class Response
 {
     /**

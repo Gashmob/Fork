@@ -9,6 +9,11 @@ use Fork\Database\Exceptions\DatabaseNotConnectedException;
 use mysqli_result;
 use mysqli_stmt;
 
+/**
+ * Class PreparedQuery
+ * Allow to prepare query
+ * @package Fork\Database\Query
+ */
 class PreparedQuery
 {
     /**
@@ -18,6 +23,7 @@ class PreparedQuery
 
     /**
      * PreparedQuery constructor.
+     * Take a query to prepare -> SELECT * FROM user WHERE id = ?
      * @param string $query
      */
     public function __construct($query)
@@ -30,6 +36,7 @@ class PreparedQuery
     }
 
     /**
+     * Return the complete result of query
      * @return array|false
      */
     public function getResult()
@@ -51,6 +58,7 @@ class PreparedQuery
     }
 
     /**
+     * Return the first row of query result
      * @return array|null
      */
     public function getOneOrNullResult()
@@ -66,6 +74,7 @@ class PreparedQuery
     }
 
     /**
+     * Bind an integer parameter with $number
      * @param int $number
      * @return PreparedQuery
      */
@@ -76,6 +85,7 @@ class PreparedQuery
     }
 
     /**
+     * Bind a float parameter with $number
      * @param float $number
      * @return PreparedQuery
      */
@@ -86,6 +96,7 @@ class PreparedQuery
     }
 
     /**
+     * Bind a string parameter with $str
      * @param string $str
      * @return PreparedQuery
      */

@@ -2,6 +2,11 @@
 
 namespace Fork\Response;
 
+/**
+ * Class RedirectResponse
+ * Send a redirection to a certain route
+ * @package Fork\Response
+ */
 class RedirectResponse
 {
     /**
