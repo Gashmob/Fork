@@ -1,0 +1,6 @@
+[submodule "yaml_editor"]
+    path = fork/yaml_editor
+    url = git@github.com:Gashmob/Yaml-editor
+[submodule "autoload"]
+    path = fork/autoloader
+    url = git@github.com:Gashmob/Autoload
