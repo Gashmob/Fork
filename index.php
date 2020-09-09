@@ -1,13 +1,13 @@
 <?php
 
 use Controller\HomeController;
-use Fork\Autoloader\Autoloader;
+use Autoloader\Autoloader;
 use Fork\Kernel;
 
-include_once 'fork/autoloader/Autoloader.php';
+include_once 'fork/autoload/Autoloader.php';
 
 Autoloader::setPathTop(__DIR__);
-spl_autoload_register('\Fork\Autoloader\Autoloader::load');
+spl_autoload_register('Autoloader\Autoloader::load');
 
 $router = [
     '/' => [
