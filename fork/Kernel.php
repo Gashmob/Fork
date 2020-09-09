@@ -52,13 +52,13 @@ class Kernel
 
 
     /**
-     * @param string $request
+     * @param Request $request
      */
     public function handle($request)
     {
-        if (isset($this->router[$request])) {
-            if (isset($this->router[$request]['controller'])) {
-                $control = $this->router[$request]['controller'];
+        if (isset($this->router[$request->getRoute()])) {
+            if (isset($this->router[$request->getRoute()]['controller'])) {
+                $control = $this->router[$request->getRoute()]['controller'];
 
                 if ($control instanceof Response) {
                     echo $control->getContent();
