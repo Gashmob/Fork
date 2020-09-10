@@ -5,3 +5,4 @@ database:
     password: "fG42.k!Xa80"
     dbName: ""
     port: 3306
+mod: "dev"

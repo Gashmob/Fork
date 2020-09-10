@@ -3,16 +3,27 @@
 namespace Controller;
 
 use Fork\Annotations\Route;
-use Fork\Response\TemplateResponse;
+use Fork\Controller\AbstractController;
+use Fork\Response\RedirectResponse;
+use Fork\Response\Response;
 
-class HomeController
+class HomeController extends AbstractController
 {
     /**
      * @Route(route="/", name="home")
-     * @return TemplateResponse
+     * @return Response
      */
     public function homepage()
     {
-        return new TemplateResponse('view/home/homepage.php');
+        return $this->render('home/homepage.html.twig');
+    }
+
+    /**
+     * @Route(route="/redirect", name="redirect")
+     * @return RedirectResponse
+     */
+    public function redirect()
+    {
+        return $this->redirectToRoute('home');
     }
 }

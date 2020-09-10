@@ -4,7 +4,7 @@ namespace Fork\Kernel;
 
 use Exception;
 use Fork\Annotations\RouteAnnotationReader;
-use Fork\ControllerHandler;
+use Fork\Controller\ControllerHandler;
 use Fork\Database\DatabaseConnection;
 use Fork\Database\DatabaseCredentials;
 use Fork\Database\Exceptions\ConnectionFailedException;
@@ -12,7 +12,6 @@ use Fork\Request\Request;
 use Fork\Request\Session;
 use Fork\Response\RedirectResponse;
 use Fork\Response\Response;
-use Fork\Response\TemplateResponse;
 use ReflectionException;
 use ReflectionMethod;
 use YamlEditor\Exceptions\PathNotFoundException;
@@ -75,8 +74,6 @@ class Kernel
 
                     if ($result instanceof Response) {
                         echo $result->getContent();
-                    } elseif ($result instanceof TemplateResponse) {
-                        include_once "Kernel.php";
                     } elseif ($result instanceof RedirectResponse) {
                         $routeName = $result->getRouteName();
 
