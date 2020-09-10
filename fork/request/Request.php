@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fork;
+namespace Fork\Request;
 
 
 class Request
@@ -55,5 +55,21 @@ class Request
         } else {
             return null;
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getArray()
+    {
+        return $this->get;
+    }
+
+    /**
+     * @return array
+     */
+    public function postArray()
+    {
+        return $this->post;
     }
 }

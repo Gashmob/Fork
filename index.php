@@ -1,9 +1,8 @@
 <?php
 
 use Autoloader\Autoloader;
-use Controller\HomeController;
-use Fork\Kernel;
-use Fork\Request;
+use Fork\Kernel\Kernel;
+use Fork\Request\Request;
 
 include_once 'fork/autoload/Autoloader.php';
 
@@ -12,15 +11,12 @@ spl_autoload_register('Autoloader\Autoloader::load');
 
 $request = new Request($_GET, $_POST, isset($_GET['page']) ? $_GET['page'] : '/');
 
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
-$router = [
-    '/' => [
-        'name' => 'home',
-        'controller' => (new HomeController())->homepage(),
-    ],
-];
-// _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
+$kernel = new Kernel();
 
-$kernel = new Kernel($router);
-
-$kernel->handle($request);
+try {
+    $kernel->handle($request);
+} catch (ReflectionException $e) {
+    die($e);
+} catch (Exception $e) {
+    die($e);
+}

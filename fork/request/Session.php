@@ -1,6 +1,6 @@
 <?php
 
-namespace Fork;
+namespace Fork\Request;
 
 /**
  * Class Session
