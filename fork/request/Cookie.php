@@ -7,18 +7,18 @@ namespace Fork\Request;
  * Allow to set and get cookie easily
  * @package Fork
  */
-abstract class Cookie
+class Cookie
 {
     /**
      * @param string $name
      * @return mixed|null
      */
-    public static function get($name)
+    public function get($name)
     {
         return isset($_COOKIE[$name]) ? $_COOKIE[$name] : null;
     }
 
-    public static function set($name, $value = "", $expires = 0)
+    public function set($name, $value = "", $expires = 0)
     {
         setcookie($name, $value, $expires);
     }

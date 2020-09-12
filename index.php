@@ -11,10 +11,10 @@ spl_autoload_register('Autoloader\Autoloader::load');
 
 $request = new Request($_GET, $_POST, isset($_GET['page']) ? $_GET['page'] : '/');
 
-$kernel = new Kernel();
+$kernel = new Kernel($request);
 
 try {
-    $kernel->handle($request);
+    $kernel->handle();
 } catch (ReflectionException $e) {
     die($e);
 } catch (Exception $e) {

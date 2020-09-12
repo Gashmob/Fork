@@ -4,11 +4,28 @@ namespace Controller;
 
 use Fork\Annotations\Route;
 use Fork\Controller\AbstractController;
+use Fork\Request\Session;
 use Fork\Response\RedirectResponse;
 use Fork\Response\Response;
 
 class HomeController extends AbstractController
 {
+    /**
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * HomeController constructor.
+     * @param Session $session
+     */
+    public function __construct(Session $session)
+    {
+        parent::__construct();
+        $this->session = $session;
+    }
+
+
     /**
      * @Route(route="/", name="home")
      * @return Response
@@ -19,11 +36,12 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route(route="/redirect", name="redirect")
+     * @Route(route="/redirect/{route}", name="redirect")
+     * @param string $route
      * @return RedirectResponse
      */
-    public function redirect()
+    public function redirect(string $route)
     {
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute($route);
     }
 }
