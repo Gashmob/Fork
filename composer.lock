@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7c7c33b3de0ea0cdfb0a6f949640758",
+    "content-hash": "125e838a04d45605c8975969eb6dfd3c",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -151,6 +151,39 @@
                 }
             ],
             "time": "2020-05-25T17:44:05+00:00"
+        },
+        {
+            "name": "gashmob/yaml-editor",
+            "version": "V1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gashmob/Yaml-editor.git",
+                "reference": "23fdba69e32c5a4cbc0dbeb2a8d8a3be17bce917"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gashmob/Yaml-editor/zipball/23fdba69e32c5a4cbc0dbeb2a8d8a3be17bce917",
+                "reference": "23fdba69e32c5a4cbc0dbeb2a8d8a3be17bce917",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "YamlEditor\\": "src/yaml_editor"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Traini",
+                    "email": "kevin@ktraini.com"
+                }
+            ],
+            "description": "Php classes for editing yaml files",
+            "time": "2020-09-15T06:19:44+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
