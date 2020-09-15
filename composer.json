@@ -1,4 +1,20 @@
 {
+    "name": "gashmob/fork",
+    "description": "A little framework for basic websites and APIs",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Traini",
+            "email": "kevin@ktraini.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fork\\": "fork/",
+            "Controller\\": "src/Controller"
+        }
+    },
     "require": {
         "doctrine/annotations": "^1.10",
         "twig/twig": "^3.0"
