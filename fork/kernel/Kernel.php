@@ -3,8 +3,6 @@
 namespace Fork\Kernel;
 
 use Exception;
-use Fork\Annotations\RouteAnnotationReader;
-use Fork\Controller\ControllerHandler;
 use Fork\Database\DatabaseConnection;
 use Fork\Database\DatabaseCredentials;
 use Fork\Database\Exceptions\ConnectionFailedException;
@@ -68,39 +66,23 @@ class Kernel
      */
     public function handle()
     {
-        $reader = new RouteAnnotationReader();
-        $controllers = (new ControllerHandler())->getControllers();
-        $routes = [];
-        foreach ($controllers as $controller) {
-            $routes = array_merge($routes, $reader->getRoutes($controller));
-        }
-
+        $router = new Router();
         $request = $this->args[Request::class];
-        foreach ($routes as $route) {
-            if ($route['route'] === $request->getRoute()) {
-                $method = $route['method'];
-                if ($method instanceof ReflectionMethod) {
-                    $controller = $this->constructController($method->getDeclaringClass());
-                    $method->setAccessible(true);
-                    $result = $this->invokeMethod($method, $controller);
 
-                    if ($result instanceof Response) {
-                        echo $result->getContent();
-                    } elseif ($result instanceof RedirectResponse) {
-                        $routeName = $result->getRouteName();
+        $method = $router->getMethod($request->getRoute());
+        $controller = $this->constructController($method->getDeclaringClass());
+        $method->setAccessible(true);
+        $result = $this->invokeMethod($method, $controller);
 
-                        $redirect = '';
-                        foreach ($routes as $newRoute) {
-                            if ($newRoute['routeName'] === $routeName) {
-                                $redirect = $newRoute['route'];
-                            }
-                        }
+        if ($result instanceof Response) {
+            echo $result->getContent();
+        } elseif ($result instanceof RedirectResponse) {
+            $routeName = $result->getRouteName();
 
-                        $this->args[Request::class] = new Request($request->getArray(), $request->postArray(), $redirect);
-                        $this->handle();
-                    }
-                }
-            }
+            $redirect = $router->getRoute($routeName);
+
+            $this->args[Request::class] = new Request($request->getArray(), $request->postArray(), $redirect);
+            $this->handle();
         }
     }
 

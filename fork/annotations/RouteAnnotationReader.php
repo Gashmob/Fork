@@ -10,6 +10,10 @@ use ReflectionException;
 
 class RouteAnnotationReader
 {
+    const ROUTE = 'route';
+    const METHOD = 'method';
+    const ROUTE_NAME = 'routeName';
+
     /**
      * @var AnnotationReader
      */
@@ -34,9 +38,9 @@ class RouteAnnotationReader
             $annotation = $this->reader->getMethodAnnotation($method, Route::class);
             if ($annotation != null && $annotation instanceof Route) {
                 $methods[] = [
-                    'method' => $method,
-                    'route' => $annotation->route,
-                    'routeName' => $annotation->name
+                    self::METHOD => $method,
+                    self::ROUTE => $annotation->route,
+                    self::ROUTE_NAME => $annotation->name
                 ];
             }
         }
