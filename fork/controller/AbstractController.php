@@ -63,10 +63,11 @@ abstract class AbstractController
 
     /**
      * @param $routeName
+     * @param array $args
      * @return RedirectResponse
      */
-    public function redirectToRoute($routeName)
+    public function redirectToRoute($routeName, array $args = [])
     {
-        return new RedirectResponse($routeName);
+        return new RedirectResponse($routeName, $args);
     }
 }

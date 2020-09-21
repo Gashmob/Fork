@@ -1,19 +1,23 @@
 <?php
 
 
-namespace Fork\kernel;
+namespace Fork\Kernel;
 
 
 use Exception;
 use Fork\Annotations\RouteAnnotationReader;
 use Fork\Controller\ControllerHandler;
-use Fork\kernel\exceptions\RedirectionNotFoundException;
-use Fork\kernel\exceptions\RouteNotFoundException;
+use Fork\Kernel\Exceptions\MissingArgumentException;
+use Fork\Kernel\Exceptions\RedirectionNotFoundException;
+use Fork\Kernel\Exceptions\RouteNotFoundException;
 use ReflectionException;
 use ReflectionMethod;
 
 class Router
 {
+    const METHOD = 'method';
+    const ARGS = 'args';
+
     /**
      * @var array
      */
@@ -49,41 +53,64 @@ class Router
 
     /**
      * @param string $route
-     * @return ReflectionMethod
+     * @return array
      * @throws RouteNotFoundException
      */
     public function getMethod(string $route)
     {
         $tab = $this->cutRoute($route);
 
-        foreach ($tab as $word) {
-            if (isset($value)) {
-                if (isset($value[$word])) {
-                    $value = $value[$word];
-                } else throw new RouteNotFoundException($route);
-            } else {
-                if (isset($this->routes[$word])) {
-                    $value = $this->routes[$word];
-                } else throw new RouteNotFoundException($route);
-            }
-        }
+        $args = [];
 
-        if (isset($value)) {
-            if ($value instanceof ReflectionMethod) {
-                return $value;
-            } else throw new RouteNotFoundException($route);
-        } else throw new RouteNotFoundException($route);
+        if (count($tab) > 1 && $tab[count($tab) - 1] == '/') {
+            $tab = array_slice($tab, 0, count($tab) - 1);
+        }
+        $routes = $this->routes;
+
+        $result = '';
+        for ($i = 0; $i < count($tab); $i++) {
+            foreach ($routes as $r => $method) {
+                if ($r == $tab[$i]) {
+                    $result = $routes[$r];
+                } elseif ($this->isVariableRoute($r)) {
+                    $result = $routes[$r];
+                    $args[$this->getVariableRouteName($r)] = substr($tab[$i], 1);
+                }
+                if (is_array($result)) $routes = $result;
+            }
+            if (!isset($result)) throw new RouteNotFoundException($route);
+        }
+        if (!isset($result)) throw new RouteNotFoundException($route);
+
+        return [
+            self::METHOD => $result,
+            self::ARGS => $args
+        ];
     }
 
     /**
      * @param string $routeName
+     * @param array $args
      * @return string
      * @throws RedirectionNotFoundException
+     * @throws MissingArgumentException
      */
-    public function getRoute(string $routeName)
+    public function getRoute(string $routeName, array $args)
     {
         if (isset($this->routeNames[$routeName])) {
-            return $this->routeNames[$routeName];
+            $route = $this->routeNames[$routeName];
+            $tab = $this->cutRoute($route);
+
+            $a = 0;
+            for ($i = 0; $i < count($tab); $i++) {
+                if ($this->isVariableRoute($tab[$i])) {
+                    if (isset($args[$a])) {
+                        $tab[$i] = '/' . $args[$a];
+                    } else throw new MissingArgumentException($routeName, substr($tab[$i], 1));
+                }
+            }
+            return implode($tab);
+
         } else throw new RedirectionNotFoundException($routeName);
     }
 
@@ -157,7 +184,7 @@ class Router
                     $word .= $c;
                 } else { // strlen($word) > 0
                     $result[] = $word;
-                    $word = '';
+                    $word = $c;
                 }
             } else {
                 $word .= $c;
@@ -169,5 +196,25 @@ class Router
         }
 
         return $result;
+    }
+
+    /**
+     * @param string $route
+     * @return bool
+     */
+    private function isVariableRoute(string $route)
+    {
+        $len = strlen($route);
+        return $len >= 4 ? $route[1] == '{' && $route[$len - 1] == '}' : false;
+    }
+
+    /**
+     * @param string $route
+     * @return string
+     */
+    private function getVariableRouteName(string $route)
+    {
+        if ($this->isVariableRoute($route)) return substr($route, 2, strlen($route) - 3);
+        else return '';
     }
 }

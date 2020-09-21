@@ -69,20 +69,25 @@ class Kernel
         $router = new Router();
         $request = $this->args[Request::class];
 
-        $method = $router->getMethod($request->getRoute());
+
+        $route = $router->getMethod($request->getRoute());
+        $method = $route[Router::METHOD];
         $controller = $this->constructController($method->getDeclaringClass());
         $method->setAccessible(true);
-        $result = $this->invokeMethod($method, $controller);
+        $result = $this->invokeMethod($method, $controller, $route[Router::ARGS]);
 
         if ($result instanceof Response) {
             echo $result->getContent();
         } elseif ($result instanceof RedirectResponse) {
             $routeName = $result->getRouteName();
+            $args = $result->getArgs();
 
-            $redirect = $router->getRoute($routeName);
+            $redirect = $router->getRoute($routeName, $args);
 
-            $this->args[Request::class] = new Request($request->getArray(), $request->postArray(), $redirect);
-            $this->handle();
+            $uri = $_SERVER['REQUEST_URI'];
+            $uri = substr($uri, 0, strlen($uri) - strlen($request->getRoute())); // On récupère la base de l'url
+            $uri .= $redirect;
+            header('Location: ' . $uri);
         }
     }
 
@@ -101,38 +106,39 @@ class Kernel
     /**
      * @param ReflectionMethod $reflection
      * @param object $controller
+     * @param array $args
      * @return mixed
      * @throws ReflectionException
      */
-    private function invokeMethod(ReflectionMethod $reflection, $controller)
+    private function invokeMethod(ReflectionMethod $reflection, $controller, array $args)
     {
         $parameters = $reflection->getParameters();
 
-        return $reflection->invokeArgs($controller, $this->getArgs($parameters));
+        return $reflection->invokeArgs($controller, $this->getArgs($parameters, $args));
     }
 
     /**
      * @param ReflectionParameter[] $parameters
+     * @param array $args
      * @return array
      * @throws ReflectionException
      */
-    private function getArgs(array $parameters)
+    private function getArgs(array $parameters, array $args = [])
     {
-        $args = [];
+        $result = [];
         foreach ($parameters as $parameter) {
             $type = $parameter->getType();
 
-            if (isset($this->args[$type->getName()])) {
-                $args[] = $this->args[$type->getName()];
-            } else {
-                if ($parameter->isOptional()) {
-                    $args[] = $parameter->getDefaultValue();
-                } else {
-                    $args[] = '';
+            if (isset($this->args[$type->getName()])) $result[] = $this->args[$type->getName()];
+            else {
+                if ($parameter->isOptional()) $result[] = $parameter->getDefaultValue();
+                else {
+                    if (isset($args[$parameter->getName()])) $result[] = $args[$parameter->getName()];
+                    else $result[] = '';
                 }
             }
         }
 
-        return $args;
+        return $result;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Fork\kernel\exceptions;
+namespace Fork\kernel\Exceptions;
 
 
 use Exception;

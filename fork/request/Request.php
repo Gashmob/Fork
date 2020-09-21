@@ -27,7 +27,7 @@ class Request
      * @param array $post
      * @param string $route
      */
-    public function __construct(array $get, array $post, $route)
+    public function __construct(array $get, array $post, string $route)
     {
         $this->get = $get;
         $this->post = $post;
@@ -38,7 +38,8 @@ class Request
      * Return the route request
      * @return string
      */
-    public function getRoute() {
+    public function getRoute()
+    {
         return $this->route;
     }
 
@@ -47,7 +48,8 @@ class Request
      * @param $name
      * @return mixed
      */
-    public function get($name) {
+    public function get($name)
+    {
         if (isset($this->get[$name])) {
             return $this->get[$name];
         } else if (isset($this->post[$name])) {
