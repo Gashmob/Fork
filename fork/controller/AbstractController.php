@@ -4,6 +4,7 @@
 namespace Fork\Controller;
 
 
+use Fork\response\JsonResponse;
 use Fork\Response\RedirectResponse;
 use Fork\Response\Response;
 use Twig\Environment;
@@ -41,6 +42,15 @@ abstract class AbstractController
                 'cache' => 'cache/templates',
                 'auto_reload' => false
             ]);
+    }
+
+    /**
+     * @param string $text
+     * @return Response
+     */
+    public function text(string $text)
+    {
+        return new Response($text);
     }
 
     /**
