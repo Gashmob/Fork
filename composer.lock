@@ -154,16 +154,16 @@
         },
         {
             "name": "gashmob/yaml-editor",
-            "version": "V1.2.1",
+            "version": "V1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gashmob/Yaml-editor.git",
-                "reference": "23fdba69e32c5a4cbc0dbeb2a8d8a3be17bce917"
+                "reference": "89b3fd26fb4cb88335f3cb4f22a681330f81a42f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gashmob/Yaml-editor/zipball/23fdba69e32c5a4cbc0dbeb2a8d8a3be17bce917",
-                "reference": "23fdba69e32c5a4cbc0dbeb2a8d8a3be17bce917",
+                "url": "https://api.github.com/repos/Gashmob/Yaml-editor/zipball/89b3fd26fb4cb88335f3cb4f22a681330f81a42f",
+                "reference": "89b3fd26fb4cb88335f3cb4f22a681330f81a42f",
                 "shasum": ""
             },
             "type": "library",
@@ -183,7 +183,7 @@
                 }
             ],
             "description": "Php classes for editing yaml files",
-            "time": "2020-09-15T06:19:44+00:00"
+            "time": "2020-09-22T10:13:42+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",

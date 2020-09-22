@@ -12,9 +12,11 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
+use XMLParser\XMLParser;
 use YamlEditor\Exceptions\PathNotFoundException;
 use YamlEditor\YamlArray;
 use YamlEditor\YamlFile;
+use YamlEditor\YamlParser;
 
 abstract class AbstractController
 {
@@ -22,7 +24,7 @@ abstract class AbstractController
 
     public function __construct()
     {
-        $config = new YamlArray(new YamlFile('config/config.yml'));
+        $config = (new YamlFile('config/config.yml'))->getYamlArray();
         try {
             $dev = $config->get('mod');
         } catch (PathNotFoundException $e) {
@@ -51,6 +53,18 @@ abstract class AbstractController
     public function text(string $text)
     {
         return new Response($text);
+    }
+
+    /**
+     * @param YamlArray $array
+     * @return Response
+     */
+    public function yaml(YamlArray $array)
+    {
+        $a = YamlParser::toYaml($array);
+        $a = str_replace(chr(10), '</br>', $a); // Replace \n
+        $a = str_replace(chr(32), '&nbsp;', $a); // Replace tabulation
+        return new Response($a);
     }
 
     /**

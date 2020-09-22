@@ -16,7 +16,6 @@ use ReflectionException;
 use ReflectionMethod;
 use ReflectionParameter;
 use YamlEditor\Exceptions\PathNotFoundException;
-use YamlEditor\YamlArray;
 use YamlEditor\YamlFile;
 
 /**
@@ -43,7 +42,7 @@ class Kernel
         $cookie = new Cookie();
         $this->args[get_class($cookie)] = $cookie;
 
-        $config = new YamlArray(new YamlFile('config/config.yml'));
+        $config = (new YamlFile('config/config.yml'))->getYamlArray();
         try {
             DatabaseConnection::connect(new DatabaseCredentials(
                 $config->get('database.credentials.host'),

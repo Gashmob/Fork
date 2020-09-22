@@ -6,7 +6,7 @@ use Fork\Annotations\Route;
 use Fork\Controller\AbstractController;
 use Fork\Request\Session;
 use Fork\Response\RedirectResponse;
-use Fork\Response\Response;
+use YamlEditor\YamlArray;
 
 class HomeController extends AbstractController
 {
@@ -28,7 +28,6 @@ class HomeController extends AbstractController
 
     /**
      * @Route(route="/", name="home")
-     * @return Response
      */
     public function homepage()
     {
@@ -58,5 +57,17 @@ class HomeController extends AbstractController
             Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent tempus, nibh a bibendum volutpat, nisi magna hendrerit quam, sit amet placerat tortor purus pellentesque libero. Cras eget velit eget tortor fermentum efficitur non vel neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec finibus sagittis lacus, id varius lacus viverra quis. Vestibulum rhoncus vulputate urna, ac interdum odio scelerisque quis. Aliquam in ornare lectus. Sed venenatis arcu nunc, ac rutrum sapien blandit quis. Maecenas aliquam bibendum vehicula. Vivamus dapibus sapien congue, mollis magna at, mollis lorem. Aenean rhoncus egestas magna non condimentum. Donec a porta neque, eget consectetur eros.
             Integer sagittis, risus et malesuada dictum, justo dui commodo dui, non luctus augue metus ac nisl. Suspendisse feugiat scelerisque posuere. Vivamus tellus arcu, luctus nec rhoncus at, ornare porttitor urna. Nulla ac arcu sodales, dictum mi ac, vulputate lorem. Donec non cursus diam. Sed mattis urna nisi. Proin a nulla gravida risus imperdiet dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras faucibus ultrices turpis, eget maximus nisi vulputate vel. Nulla facilisi.</p>
         ");
+    }
+
+    /**
+     * @Route(route="/some/yaml", name="yaml")
+     */
+    public function someYaml()
+    {
+        $y = new YamlArray('');
+        $y->set('bonjour.test', 'Hello World !');
+        $y->set('answer', 42);
+
+        return $this->yaml($y);
     }
 }
