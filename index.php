@@ -1,21 +1,22 @@
 <?php
 
-use Controller\HomeController;
-use Fork\Autoloader\Autoloader;
-use Fork\Kernel;
+use Autoloader\Autoloader;
+use Fork\Kernel\Kernel;
+use Fork\Request\Request;
 
-include_once 'fork/autoloader/Autoloader.php';
+include_once 'fork/autoload/Autoloader.php';
 
 Autoloader::setPathTop(__DIR__);
-spl_autoload_register('\Fork\Autoloader\Autoloader::load');
+spl_autoload_register('Autoloader\Autoloader::load');
 
-$router = [
-    '/' => [
-        'name' => 'home',
-        'controller' => (new HomeController())->homepage(),
-    ],
-];
+$request = new Request($_GET, $_POST, isset($_GET['page']) ? '/' . $_GET['page'] : '/');
 
-$kernel = new Kernel($router);
+$kernel = new Kernel($request);
 
-$kernel->handle(isset($_GET['page']) ? $_GET['page'] : '/');
+try {
+    $kernel->handle();
+} catch (ReflectionException $e) {
+    die($e);
+} catch (Exception $e) {
+    die($e);
+}

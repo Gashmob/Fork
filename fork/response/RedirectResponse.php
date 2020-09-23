@@ -15,12 +15,19 @@ class RedirectResponse
     private $routeName;
 
     /**
+     * @var array
+     */
+    private $args;
+
+    /**
      * RedirectResponse constructor.
      * @param string $routeName
+     * @param array $args
      */
-    public function __construct($routeName)
+    public function __construct(string $routeName, array $args = [])
     {
         $this->routeName = $routeName;
+        $this->args = $args;
     }
 
     /**
@@ -29,5 +36,13 @@ class RedirectResponse
     public function getRouteName()
     {
         return $this->routeName;
+    }
+
+    /**
+     * @return array
+     */
+    public function getArgs(): array
+    {
+        return $this->args;
     }
 }

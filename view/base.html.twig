@@ -2,13 +2,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8"/>
-    <title><?= $title ?></title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="shortcut icon" href="resources/img/fork.svg"/>
 
     <link rel="stylesheet" href="resources/css/base.css"/>
+    {% block stylesheet %}{% endblock %}
 </head>
 
 <body>
-<?= $content ?>
+{% block body %}{% endblock %}
 </body>
 </html>
