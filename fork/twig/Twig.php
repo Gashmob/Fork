@@ -29,7 +29,7 @@ class Twig
         }
 
         $loader = new FilesystemLoader('view/');
-        $this->twig = new Environment($loader, $dev == "dev" ?
+        $this->twig = new Environment($loader, $dev == "dev" ? // Si on est en dev, on ne génere pas de cache, le cache est généré en prod
             [
                 'debug' => true,
                 'cache' => false,
