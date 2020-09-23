@@ -21,7 +21,6 @@ class HomeController extends AbstractController
      */
     public function __construct(Session $session)
     {
-        parent::__construct();
         $this->session = $session;
     }
 

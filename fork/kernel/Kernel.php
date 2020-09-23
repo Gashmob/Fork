@@ -6,11 +6,13 @@ use Exception;
 use Fork\Database\DatabaseConnection;
 use Fork\Database\DatabaseCredentials;
 use Fork\Database\Exceptions\ConnectionFailedException;
+use Fork\kernel\Exceptions\RouteNotFoundException;
 use Fork\Request\Cookie;
 use Fork\Request\Request;
 use Fork\Request\Session;
 use Fork\Response\RedirectResponse;
 use Fork\Response\Response;
+use Fork\Twig\Twig;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
@@ -58,10 +60,8 @@ class Kernel
         }
     }
 
-
     /**
-     * @throws ReflectionException
-     * @throws Exception
+     *
      */
     public function handle()
     {
@@ -69,24 +69,42 @@ class Kernel
         $request = $this->args[Request::class];
 
 
-        $route = $router->getMethod($request->getRoute());
-        $method = $route[Router::METHOD];
-        $controller = $this->constructController($method->getDeclaringClass());
-        $method->setAccessible(true);
-        $result = $this->invokeMethod($method, $controller, $route[Router::ARGS]);
+        try {
+            $route = $router->getMethod($request->getRoute());
+            $method = $route[Router::METHOD];
+            $controller = $this->constructController($method->getDeclaringClass());
+            $method->setAccessible(true);
+            $result = $this->invokeMethod($method, $controller, $route[Router::ARGS]);
 
-        if ($result instanceof Response) {
-            echo $result->getContent();
-        } elseif ($result instanceof RedirectResponse) {
-            $routeName = $result->getRouteName();
-            $args = $result->getArgs();
+            if ($result instanceof Response) {
+                echo $result->getContent();
+            } elseif ($result instanceof RedirectResponse) {
+                $routeName = $result->getRouteName();
+                $args = $result->getArgs();
 
-            $redirect = $router->getRoute($routeName, $args);
+                $redirect = $router->getRoute($routeName, $args);
 
-            $uri = $_SERVER['REQUEST_URI'];
-            $uri = substr($uri, 0, strlen($uri) - strlen($request->getRoute())); // On récupère la base de l'url
-            $uri .= $redirect;
-            header('Location: ' . $uri);
+                $uri = $_SERVER['REQUEST_URI'];
+                $uri = substr($uri, 0, strlen($uri) - strlen($request->getRoute())); // On récupère la base de l'url
+                $uri .= $redirect;
+                header('Location: ' . $uri);
+            }
+        } catch (RouteNotFoundException $e) {
+            try {
+                echo (new Twig())->getTwig()->render('errors/error404.html.twig', ['route' => $request->getRoute()]);
+            } catch (Exception $er) {
+                try {
+                    echo (new Twig())->getTwig()->render('errors/exception.html.twig', ['exception' => $er]);
+                } catch (Exception $err) {
+                    die($err);
+                }
+            }
+        } catch (Exception $e) {
+            try {
+                echo (new Twig())->getTwig()->render('errors/exception.html.twig', ['exception' => $e]);
+            } catch (Exception $er) {
+                die($er);
+            }
         }
     }
 

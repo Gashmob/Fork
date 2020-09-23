@@ -78,9 +78,9 @@ class Router
                 }
                 if (is_array($result)) $routes = $result;
             }
-            if (!isset($result)) throw new RouteNotFoundException($route);
+            if ($result == '') throw new RouteNotFoundException($route);
         }
-        if (!isset($result)) throw new RouteNotFoundException($route);
+        if (is_array($result) || $result == '') throw new RouteNotFoundException($route);
 
         return [
             self::METHOD => $result,

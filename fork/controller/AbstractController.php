@@ -4,48 +4,18 @@
 namespace Fork\Controller;
 
 
-use Fork\response\JsonResponse;
+use Exception;
 use Fork\Response\RedirectResponse;
 use Fork\Response\Response;
-use Twig\Environment;
+use Fork\Twig\Twig;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
-use Twig\Loader\FilesystemLoader;
-use XMLParser\XMLParser;
-use YamlEditor\Exceptions\PathNotFoundException;
 use YamlEditor\YamlArray;
-use YamlEditor\YamlFile;
 use YamlEditor\YamlParser;
 
 abstract class AbstractController
 {
-    private $twig;
-
-    public function __construct()
-    {
-        $config = (new YamlFile('config/config.yml'))->getYamlArray();
-        try {
-            $dev = $config->get('mod');
-        } catch (PathNotFoundException $e) {
-            $dev = "prod";
-        }
-
-        $loader = new FilesystemLoader('view/');
-        $this->twig = new Environment($loader, $dev == "dev" ?
-            [
-                'debug' => true,
-                'cache' => false,
-                'auto_reload' => true
-            ]
-            :
-            [
-                'debug' => false,
-                'cache' => 'cache/templates',
-                'auto_reload' => false
-            ]);
-    }
-
     /**
      * @param string $text
      * @return Response
@@ -69,18 +39,20 @@ abstract class AbstractController
 
     /**
      * @param $template
-     * @param $args
+     * @param array $args
      * @return Response
      */
     public function render($template, $args = [])
     {
         try {
-            return new Response($this->twig->render($template, $args));
+            return new Response((new Twig())->getTwig()->render($template, $args));
         } catch (LoaderError $e) {
-            die($e);
-        } catch (RuntimeError $e) {
-            die($e);
-        } catch (SyntaxError $e) {
+            try {
+                return new Response((new Twig())->getTwig()->render('errors/exception.html.twig', ['exception' => $e]));
+            } catch (Exception $er) {
+                die($er);
+            }
+        } catch (Exception $e) {
             die($e);
         }
     }
