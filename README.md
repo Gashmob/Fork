@@ -18,7 +18,7 @@ Tutoriel
 
 Pour créer un projet, vous avez 2 options :
 1. Télécharger l'archive du dépôt directement [(Releases)](https://github.com/Gashmob/Fork/releases)
-2. Ou télécharger un exécutable shell qui créera le projet pour vous (à télécharger aussi dans la release.
+2. Ou télécharger un exécutable shell qui créera le projet pour vous (à télécharger aussi dans la release).
 
 Si vous choisissez l'option 1, il vous suffira d'extraire les fichiers dans le dossier de votre choix et c'est tout.
 Si vous choisissez l'option 2, après avoir téléchargé l'exécutable, il faudra le remettre en exécutable via la commande :
