@@ -31,7 +31,7 @@ cp fork /bin
 ```
 Une fois tout cela fait vous pourrez enfin créer votre projet via la commande :
 ```shell script
-fork mon_projet
+fork create mon_projet
 ```
 
 
