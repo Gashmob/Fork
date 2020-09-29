@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Erreur 404 : Page {{ route }} non trouvée</title>
-    <link rel="shortcut icon" href="resources/img/errors/error.svg"/>
-    <link rel="stylesheet" href="resources/css/errors/errors.css"/>
+    <link rel="shortcut icon" href="{{ asset('img/errors/error.svg') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/errors/errors.css') }}"/>
 </head>
 
 <body>
 <header>
-    <img src="resources/img/fork.svg" alt="Fork">
+    <img src="{{ asset('img/fork.svg') }}" alt="Fork">
 </header>
 <main>
     <h1>Erreur 404 : Page non trouvée</h1>
     <p>La ressource '{{ route }}' n'existe pas</p>
-    <a href="/Fork">Retour à l'accueil</a>
+    <a href="{{ route('home') }}">Retour à l'accueil</a>
 </main>
 </body>
 </html>

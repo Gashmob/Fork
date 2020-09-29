@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}{% endblock %}</title>
-    <link rel="shortcut icon" href="resources/img/fork.svg"/>
+    <link rel="shortcut icon" href="{{ asset('img/fork.svg') }}"/>
 
-    <link rel="stylesheet" href="resources/css/base.css"/>
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}"/>
     {% block stylesheet %}{% endblock %}
 </head>
 

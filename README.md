@@ -81,6 +81,10 @@ public function exempleWithParameters(\Fork\Request\Session $session, \Fork\Requ
 
 ### Les templates
 Pour la vue, le moteur de templates twig est utilisé. Vous devrez mettre tout vos templates dans le dossier `view/`. Pour plus d'infos sur comment utiliser twig, allez sur le site officiel https://twig.symfony.com/.
+Il existe en plus 3 fonctions disponibles :
+- `asset(string)` -> vous lui renseignez le chemin dans le dossier `/resources/` de votre image, css, ... et elle génère le chemin complet pour y accéder
+- `route(string, array)` -> vous lui renseigner le nom d'une route, et elle génère l'url relative pour cette route. Le tableau sert à renseigner les paramètres des routes variables
+- `url(string, array)` -> comme pour la précédente, sauf qu'ici ce sera une url absolue.  
 
 
 ### Erreur 404
