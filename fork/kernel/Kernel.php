@@ -28,6 +28,16 @@ use YamlEditor\YamlFile;
 class Kernel
 {
     /**
+     * @var string
+     */
+    public static $relativeUri;
+
+    /**
+     * @var string
+     */
+    public static $absoluteUri;
+
+    /**
      * @var array
      */
     private $args = [];
@@ -38,6 +48,11 @@ class Kernel
      */
     public function __construct(Request $request)
     {
+        $uri = $_SERVER['REQUEST_URI'];
+        self::$relativeUri = substr($uri, 0, strlen($uri) - strlen($request->getRoute()));
+        $uri = $_SERVER['HTTP_REFERER'];
+        self::$absoluteUri = substr($uri, 0, strlen($uri) - 1) . self::$relativeUri;
+
         $this->args[get_class($request)] = $request;
         $session = new Session();
         $this->args[get_class($session)] = $session;
@@ -84,9 +99,7 @@ class Kernel
 
                 $redirect = $router->getRoute($routeName, $args);
 
-                $uri = $_SERVER['REQUEST_URI'];
-                $uri = substr($uri, 0, strlen($uri) - strlen($request->getRoute())); // On récupère la base de l'url
-                $uri .= $redirect;
+                $uri = self::$relativeUri . $redirect;
                 header('Location: ' . $uri);
             }
         } catch (RouteNotFoundException $e) {

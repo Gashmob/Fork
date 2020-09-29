@@ -4,8 +4,12 @@
 namespace Fork\Twig;
 
 
+use Fork\Kernel\Kernel;
+use Fork\Kernel\Router;
 use Twig\Environment;
+use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
 use YamlEditor\Exceptions\PathNotFoundException;
 use YamlEditor\YamlFile;
 
@@ -41,6 +45,24 @@ class Twig
                 'cache' => 'cache/templates',
                 'auto_reload' => false
             ]);
+
+        $this->twig->addExtension(new DebugExtension());
+        $this->addFunctions();
+    }
+
+    private function addFunctions()
+    {
+        $this->twig->addFunction(new TwigFunction('asset', function ($asset) { // Fonction asset(string), renvoie le chemin depuis la racine vers l'asset (la resource)
+            return Kernel::$relativeUri . '/resources/' . $asset;
+        }));
+        $this->twig->addFunction(new TwigFunction('route', function ($routeName, $args = []) { // Fonction route(string, array), renvoie l'url relative pour la route demandée
+            $router = new Router();
+            return Kernel::$relativeUri . $router->getRoute($routeName, $args);
+        }));
+        $this->twig->addFunction(new TwigFunction('url', function ($routeName, $args = []) { // Fonction url(string, array), renvoie l'url absolu pour la route demandée
+            $router = new Router();
+            return Kernel::$absoluteUri . $router->getRoute($routeName, $args);
+        }));
     }
 
     /**
