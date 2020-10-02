@@ -3,4 +3,11 @@ RewriteEngine On
 # Redirection de pages
 RewriteRule ^([a-z0-9-/]+)$ index.php?page=$1 [L]
 
-Options -Indexes
+# Protection des fichiers
+RewriteRule ^config/config.yml - [F,L]
+RewriteRule ^view/(.*/)*.+\.html\.twig - [F,L]
+
+Options All -Indexes
+IndexIgnore *
+ServerSignature Off
+Options +FollowSymLinks

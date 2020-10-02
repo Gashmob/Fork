@@ -6,6 +6,7 @@ use Fork\Annotations\Route;
 use Fork\Controller\AbstractController;
 use Fork\Request\Session;
 use Fork\Response\RedirectResponse;
+use Fork\Response\Response;
 use YamlEditor\YamlArray;
 
 class HomeController extends AbstractController
@@ -68,5 +69,24 @@ class HomeController extends AbstractController
         $y->set('answer', 42);
 
         return $this->yaml($y);
+    }
+
+    /**
+     * @Route(route="/projects", name="list")
+     * @return Response
+     */
+    public function list()
+    {
+        return $this->text('Liste des projets');
+    }
+
+    /**
+     * @Route(route="/projects/{id}", name="show")
+     * @param $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        return $this->text("Show project id:$id");
     }
 }
