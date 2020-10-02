@@ -69,16 +69,28 @@ class Router
 
         $result = '';
         for ($i = 0; $i < count($tab); $i++) {
+            $routeT = [];
             foreach ($routes as $r => $method) {
                 if ($r == $tab[$i]) {
-                    $result = $routes[$r];
+                    if (is_array($method)) {
+                        if ($i < count($tab) -1) { // Si on n'a pas fini sur la route recherché
+                            $routeT = array_merge($routeT, $method);
+                        } elseif (is_int(key($method))) {
+                            $result = $method[key($method)];
+                        }
+                    } elseif ($i == count($tab) -1) { // Si on est à la fin du tableau
+                        $result = $method; // On a trouvé !
+                    }
                 } elseif ($this->isVariableRoute($r)) {
-                    $result = $routes[$r];
                     $args[$this->getVariableRouteName($r)] = substr($tab[$i], 1);
+                    if (is_array($method)) {
+                        $routeT = array_merge($routeT, $method);
+                    } else {
+                        $result = $method;
+                    }
                 }
-                if (is_array($result)) $routes = $result;
             }
-            if ($result == '') throw new RouteNotFoundException($route);
+            $routes = $routeT;
         }
         if (is_array($result) || $result == '') throw new RouteNotFoundException($route);
 
@@ -139,7 +151,11 @@ class Router
             $array[$route[0]] = $method;
         } elseif (count($route) > 1) {
             if (isset($array[$route[0]])) {
-                $array[$route[0]] = $this->getArray(array_slice($route, 1), $method, $array[$route[0]]);
+                if (is_array($array[$route[0]])) {
+                    $array[$route[0]] = $this->getArray(array_slice($route, 1), $method, $array[$route[0]]);
+                } else {
+                    $array[$route[0]] = $this->getArray(array_slice($route, 1), $method, [$array[$route[0]]]);
+                }
             } else {
                 $array = array_merge($array, $this->setArray($route, $method));
             }

@@ -75,9 +75,6 @@ class Kernel
         }
     }
 
-    /**
-     *
-     */
     public function handle()
     {
         $router = new Router();
@@ -156,16 +153,16 @@ class Kernel
     private function getArgs(array $parameters, array $args = [])
     {
         $result = [];
+
         foreach ($parameters as $parameter) {
             $type = $parameter->getType();
 
-            if (isset($this->args[$type->getName()])) $result[] = $this->args[$type->getName()];
-            else {
-                if ($parameter->isOptional()) $result[] = $parameter->getDefaultValue();
-                else {
-                    if (isset($args[$parameter->getName()])) $result[] = $args[$parameter->getName()];
-                    else $result[] = '';
-                }
+            if (isset($args[$parameter->getName()])) {
+                $result[] = $args[$parameter->getName()];
+            } elseif (isset($this->args[$type->getName()])) {
+                $result[] = $this->args[$type->getName()];
+            } else {
+                $result[] = $parameter->getDefaultValue();
             }
         }
 
