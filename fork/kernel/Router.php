@@ -113,11 +113,11 @@ class Router
             $route = $this->routeNames[$routeName];
             $tab = $this->cutRoute($route);
 
-            $a = 0;
             for ($i = 0; $i < count($tab); $i++) {
                 if ($this->isVariableRoute($tab[$i])) {
-                    if (isset($args[$a])) {
-                        $tab[$i] = '/' . $args[$a];
+                    $name = $this->getVariableRouteName($tab[$i]);
+                    if (isset($args[$name])) {
+                        $tab[$i] = '/' . $args[$name];
                     } else throw new MissingArgumentException($routeName, substr($tab[$i], 1));
                 }
             }
