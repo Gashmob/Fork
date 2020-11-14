@@ -16,6 +16,7 @@
         }
     },
     "require": {
+        "php": ">=7.0",
         "doctrine/annotations": "^1.10",
         "twig/twig": "^3.0",
         "gashmob/yaml-editor": "^1.2"
