@@ -37,10 +37,11 @@ class PreparedQuery
 
     /**
      * Execute the query
+     * @return bool
      */
     public function execute()
     {
-        $this->stmt->execute();
+        return $this->stmt->execute();
     }
 
     /**

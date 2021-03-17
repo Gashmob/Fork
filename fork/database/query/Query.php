@@ -32,11 +32,12 @@ class Query
 
     /**
      * Execute the query
+     * @return bool
      */
     public function execute()
     {
         try {
-            DatabaseConnection::getConnection()->query($this->query);
+            return DatabaseConnection::getConnection()->query($this->query) != false;
         } catch (DatabaseNotConnectedException $e) {
             die($e);
         }
