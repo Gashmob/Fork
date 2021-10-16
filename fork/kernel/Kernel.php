@@ -80,7 +80,6 @@ class Kernel
         $router = new Router();
         $request = $this->args[Request::class];
 
-
         try {
             $route = $router->getMethod($request->getRoute());
             $method = $route[Router::METHOD];
