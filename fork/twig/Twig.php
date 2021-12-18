@@ -4,8 +4,8 @@
 namespace Fork\Twig;
 
 
-use Fork\Kernel\Kernel;
-use Fork\Kernel\Router;
+use Fork\kernel\Kernel;
+use Fork\kernel\Router;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;

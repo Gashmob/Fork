@@ -9,13 +9,15 @@ use Fork\Response\RedirectResponse;
 use Fork\Response\Response;
 use Fork\Twig\Twig;
 use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 use YamlEditor\YamlArray;
 use YamlEditor\YamlParser;
 
 abstract class AbstractController
 {
+    public function __construct()
+    {
+    }
+
     /**
      * @param string $text
      * @return Response

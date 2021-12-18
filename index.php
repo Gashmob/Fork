@@ -1,7 +1,7 @@
 <?php
 
 use Autoloader\Autoloader;
-use Fork\Kernel\Kernel;
+use Fork\kernel\Kernel;
 use Fork\Request\Request;
 
 include_once 'fork/autoload/Autoloader.php';
@@ -15,8 +15,6 @@ $kernel = new Kernel($request);
 
 try {
     $kernel->handle();
-} catch (ReflectionException $e) {
-    die($e);
 } catch (Exception $e) {
     die($e);
 }

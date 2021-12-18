@@ -7,9 +7,9 @@ namespace Fork\Kernel;
 use Exception;
 use Fork\Annotations\RouteAnnotationReader;
 use Fork\Controller\ControllerHandler;
-use Fork\Kernel\Exceptions\MissingArgumentException;
-use Fork\Kernel\Exceptions\RedirectionNotFoundException;
-use Fork\Kernel\Exceptions\RouteNotFoundException;
+use Fork\kernel\Exceptions\MissingArgumentException;
+use Fork\kernel\Exceptions\RedirectionNotFoundException;
+use Fork\kernel\Exceptions\RouteNotFoundException;
 use ReflectionException;
 use ReflectionMethod;
 
@@ -73,12 +73,12 @@ class Router
             foreach ($routes as $r => $method) {
                 if ($r == $tab[$i]) {
                     if (is_array($method)) {
-                        if ($i < count($tab) -1) { // Si on n'a pas fini sur la route recherché
+                        if ($i < count($tab) - 1) { // Si on n'a pas fini sur la route recherché
                             $routeT = array_merge($routeT, $method);
                         } elseif (is_int(key($method))) {
                             $result = $method[key($method)];
                         }
-                    } elseif ($i == count($tab) -1) { // Si on est à la fin du tableau
+                    } elseif ($i == count($tab) - 1) { // Si on est à la fin du tableau
                         $result = $method; // On a trouvé !
                     }
                 } elseif ($this->isVariableRoute($r)) {
