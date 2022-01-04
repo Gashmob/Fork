@@ -2,23 +2,11 @@
     "name": "gashmob/fork",
     "description": "A little framework for basic websites and APIs",
     "type": "project",
-    "license": "Creative Commons",
+    "license": "GPL-3.0 License",
     "authors": [
         {
             "name": "Kevin Traini",
             "email": "kevin@ktraini.com"
         }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Fork\\": "fork/",
-            "Controller\\": "src/Controller"
-        }
-    },
-    "require": {
-        "php": ">=7.1",
-        "doctrine/annotations": "^1.10",
-        "twig/twig": "^3.0",
-        "gashmob/yaml-editor": "^1.2"
-    }
+    ]
 }
