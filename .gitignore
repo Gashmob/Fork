@@ -1,3 +1,2 @@
+# Local for IDEs
 .idea
-vendor
-composer.lock
