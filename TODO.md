@@ -25,7 +25,7 @@ All the works to do for version 3.0
 - [ ] Create Router
 - [ ] Create Response classes
 - [ ] Create template engine (\*.mdt) (in another repo | use composer)
-- [ ] Create .env and .env.prod
+- [ ] Create .env and .env.prod with Env class
 - [ ] Create python script (or node) in bin to manage src code
 - [ ] Create Request, Session and Cookie classes
 - [ ] Create ORM (in another repo | use composer)
