@@ -2,7 +2,7 @@
 
 All the works to do for version 3.0
 
-- [ ] Create index.php and .htaccess to redirect all request to it
+- [x] Create index.php and .htaccess to redirect all request to it
 - [x] Create main folders structure :
 	- bin
 		- fork(.py)

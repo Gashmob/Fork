@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Page redirections
+RewriteRule ^([a-z0-9-/]*)$ public/index.php?page=$1 [L]
+
+# File protections
+# TODO
+
+# Other options
+Options All -Indexes
+IndexIgnore *
+ServerSignature Off
+Options +FollowSymLinks
