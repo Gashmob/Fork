@@ -1,0 +1,13 @@
+{
+    "name": "gashmob/fork",
+    "description": "Php framework to create static website",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Kevin Traini",
+            "email": "kevin@ktraini.com"
+        }
+    ],
+    "require": {}
+}
