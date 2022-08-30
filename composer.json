@@ -9,5 +9,7 @@
             "email": "kevin@ktraini.com"
         }
     ],
-    "require": {}
+    "require": {
+        "doctrine/annotations": "^1.13"
+    }
 }
