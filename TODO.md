@@ -4,23 +4,28 @@ All the works to do for version 3.0
 
 - [x] Create index.php and .htaccess to redirect all request to it
 - [x] Create main folders structure :
-	- bin
-		- fork(.py)
-	- config
-		- config files...
-	- fork
-		- fork files...
-	- public
-		- index.php
-	- .htaccess
-	- .env
-	- .env.prod
-	- src
-		- controllers
-		- entities
-		- ...
-	- templates
-		- arborescence of .mdt file...
+    - bin
+        - fork(.py)
+    - config
+        - config files...
+    - fork
+        - fork files...
+    - public
+        - index.php
+    - .htaccess
+    - .env
+    - .env.prod
+    - src
+        - controllers
+        - entities
+        - ...
+    - view
+        - templates
+            - arborescence of .mdt file...
+        - components
+            - arborescence of .mdt file...
+        - pages
+            - arborescence of .mdt file...
 - [ ] Create template engine (\*.mdt) (in another repo | use composer)
 - [ ] Create AbstractController class
 - [ ] Create .env and .env.prod with Env class
