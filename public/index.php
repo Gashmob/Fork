@@ -1,6 +1,7 @@
 <?php
 
+use Gashmob\Fork\Router;
+
 require_once '../vendor/autoload.php';
 
-echo "Requested url is : " . $_GET['page'];
-
+$router = new Router($_GET['page']);
