@@ -26,7 +26,7 @@ All the works to do for version 3.0
             - arborescence of .mdt file...
         - pages
             - arborescence of .mdt file...
-- [ ] Create template engine (\*.mdt) (in another repo | use composer)
+- [x] Create template engine (\*.mdt) (in another repo | use composer)
 - [ ] Create AbstractController class
 - [ ] Create .env and .env.prod with Env class
 - [ ] Create python script (or node) in bin to manage src code

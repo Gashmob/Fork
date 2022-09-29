@@ -10,6 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.6"
+        "php": ">=5.6",
+        "gashmob/mdgen": "^1.0"
     }
 }

@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbdd9d898ec1e3a2a7fda89999b1c0ab",
-    "packages": [],
+    "content-hash": "d5cfe563083e8560b76e7705b20edbeb",
+    "packages": [
+        {
+            "name": "gashmob/mdgen",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gashmob/MdGen.git",
+                "reference": "2865a49aabe3f7434fa76829860870fb97f5b138"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gashmob/MdGen/zipball/2865a49aabe3f7434fa76829860870fb97f5b138",
+                "reference": "2865a49aabe3f7434fa76829860870fb97f5b138",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gashmob\\Mdgen\\": "src/",
+                    "Gashmob\\Mdgen\\Test\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Traini",
+                    "email": "kevin@ktraini.com"
+                }
+            ],
+            "description": "Markdown template engine",
+            "support": {
+                "issues": "https://github.com/Gashmob/MdGen/issues",
+                "source": "https://github.com/Gashmob/MdGen/tree/v1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/gashmob",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-09-29T11:02:54+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
