@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5cfe563083e8560b76e7705b20edbeb",
+    "content-hash": "1a001e35e1e97ce4dac3e427eb36aee5",
     "packages": [
         {
             "name": "gashmob/mdgen",
@@ -52,6 +52,53 @@
                 }
             ],
             "time": "2022-09-29T11:02:54+00:00"
+        },
+        {
+            "name": "gashmob/yaml-editor",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gashmob/Yaml-editor.git",
+                "reference": "ac8504c8f098d3177e27ecb8fe810643d6eff107"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gashmob/Yaml-editor/zipball/ac8504c8f098d3177e27ecb8fe810643d6eff107",
+                "reference": "ac8504c8f098d3177e27ecb8fe810643d6eff107",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gashmob\\YamlEditor\\": "src/",
+                    "Gashmob\\YamlEditor\\Test\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Traini",
+                    "email": "kevin@ktraini.com"
+                }
+            ],
+            "description": "Php classes for editing yaml files",
+            "support": {
+                "issues": "https://github.com/Gashmob/Yaml-editor/issues",
+                "source": "https://github.com/Gashmob/Yaml-editor/tree/v2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/gashmob",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-10-10T06:30:58+00:00"
         }
     ],
     "packages-dev": [],
