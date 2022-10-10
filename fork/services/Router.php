@@ -18,6 +18,22 @@ class Router
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
 
+    /**
+     * Test if $route is a valid route.
+     *
+     * @param string $route
+     * @return bool
+     */
+    public function hasRoute($route)
+    {
+        return isset($this->routes[$route]);
+    }
+
+    /**
+     * Dump all existing routes.
+     *
+     * @return array
+     */
     public function dump()
     {
         return $this->routes;
