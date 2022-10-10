@@ -2,6 +2,8 @@
 
 namespace Gashmob\Fork\services;
 
+use Gashmob\YamlEditor\Yaml;
+
 abstract class ServiceManager
 {
     const SERVICES_CONFIG_FILE = __DIR__ . '/../../config/services.yml';
@@ -29,8 +31,12 @@ abstract class ServiceManager
 
         // Additional services
         if (file_exists(self::SERVICES_CONFIG_FILE)) {
-            // TODO : get services from config/services.yml (need a library to parse yaml)
-            ;
+            $config = Yaml::parseFile(self::SERVICES_CONFIG_FILE);
+            if (isset($config['services'])) {
+                foreach ($config['services'] as $service) {
+                    self::$services[$service] = new $service();
+                }
+            }
         }
     }
 
