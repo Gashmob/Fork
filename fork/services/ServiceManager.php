@@ -42,6 +42,15 @@ abstract class ServiceManager
 
     /**
      * @param string $service
+     * @return bool
+     */
+    public static function hasService($service)
+    {
+        return isset(self::$services[$service]);
+    }
+
+    /**
+     * @param string $service
      * @return mixed|null
      */
     public static function getService($service)
