@@ -55,16 +55,16 @@
         },
         {
             "name": "gashmob/yaml-editor",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gashmob/Yaml-editor.git",
-                "reference": "60708e61b49a4fa57352330d6ca150b63f36f207"
+                "reference": "bf07a181aa526d905994cd2edb89ef8a87a97a53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gashmob/Yaml-editor/zipball/60708e61b49a4fa57352330d6ca150b63f36f207",
-                "reference": "60708e61b49a4fa57352330d6ca150b63f36f207",
+                "url": "https://api.github.com/repos/Gashmob/Yaml-editor/zipball/bf07a181aa526d905994cd2edb89ef8a87a97a53",
+                "reference": "bf07a181aa526d905994cd2edb89ef8a87a97a53",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +90,7 @@
             "description": "Php classes for editing yaml files",
             "support": {
                 "issues": "https://github.com/Gashmob/Yaml-editor/issues",
-                "source": "https://github.com/Gashmob/Yaml-editor/tree/v2.0.1"
+                "source": "https://github.com/Gashmob/Yaml-editor/tree/v2.0.2"
             },
             "funding": [
                 {
@@ -98,7 +98,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-10-10T06:45:13+00:00"
+            "time": "2022-10-10T07:05:27+00:00"
         }
     ],
     "packages-dev": [],

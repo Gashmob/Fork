@@ -2,6 +2,6 @@
 # - Router
 #
 # Here you can add additional services that you need
-# Just give the class and namespace of your service : Name\Space\To\Your\Class::class
+# Just give the class and namespace of your service : Name\Space\To\Your\Class
 # Your service need to have a basic constructor without params : __construct()
 services:
