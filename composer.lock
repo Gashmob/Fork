@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a001e35e1e97ce4dac3e427eb36aee5",
+    "content-hash": "5c0d7a795c311c64dcb6aea928683a4d",
     "packages": [
         {
             "name": "gashmob/mdgen",
@@ -55,16 +55,16 @@
         },
         {
             "name": "gashmob/yaml-editor",
-            "version": "v2.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gashmob/Yaml-editor.git",
-                "reference": "ac8504c8f098d3177e27ecb8fe810643d6eff107"
+                "reference": "60708e61b49a4fa57352330d6ca150b63f36f207"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gashmob/Yaml-editor/zipball/ac8504c8f098d3177e27ecb8fe810643d6eff107",
-                "reference": "ac8504c8f098d3177e27ecb8fe810643d6eff107",
+                "url": "https://api.github.com/repos/Gashmob/Yaml-editor/zipball/60708e61b49a4fa57352330d6ca150b63f36f207",
+                "reference": "60708e61b49a4fa57352330d6ca150b63f36f207",
                 "shasum": ""
             },
             "require": {
@@ -79,7 +79,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "GPL-3.0-or-later"
             ],
             "authors": [
                 {
@@ -90,7 +90,7 @@
             "description": "Php classes for editing yaml files",
             "support": {
                 "issues": "https://github.com/Gashmob/Yaml-editor/issues",
-                "source": "https://github.com/Gashmob/Yaml-editor/tree/v2.0"
+                "source": "https://github.com/Gashmob/Yaml-editor/tree/v2.0.1"
             },
             "funding": [
                 {
@@ -98,7 +98,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-10-10T06:30:58+00:00"
+            "time": "2022-10-10T06:45:13+00:00"
         }
     ],
     "packages-dev": [],
