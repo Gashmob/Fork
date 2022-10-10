@@ -27,7 +27,7 @@ abstract class ServiceManager
     public static function initialize()
     {
         // Base services
-        self::$services[Router::class] = new Router();
+        self::$services[RouterService::class] = new RouterService();
 
         // Additional services
         if (file_exists(self::SERVICES_CONFIG_FILE)) {

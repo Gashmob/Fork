@@ -2,7 +2,7 @@
 
 namespace Gashmob\Fork\services;
 
-class Router
+class RouterService
 {
     const PAGES_DIR = __DIR__ . '/../../view/pages/';
 
