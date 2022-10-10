@@ -41,6 +41,8 @@ abstract class ServiceManager
     }
 
     /**
+     * Test if the service exists.
+     *
      * @param string $service
      * @return bool
      */
@@ -50,6 +52,9 @@ abstract class ServiceManager
     }
 
     /**
+     * Return the service instance.
+     * If the service does not exist, return null.
+     *
      * @param string $service
      * @return mixed|null
      */
@@ -60,5 +65,15 @@ abstract class ServiceManager
         } else {
             return null;
         }
+    }
+
+    /**
+     * Return all existing services.
+     *
+     * @return string[]
+     */
+    public static function listServices()
+    {
+        return array_keys(self::$services);
     }
 }
