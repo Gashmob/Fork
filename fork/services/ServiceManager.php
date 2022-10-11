@@ -30,6 +30,7 @@ abstract class ServiceManager
         self::$services[RouterService::class] = new RouterService();
         self::$services[RequestService::class] = new RequestService();
         self::$services[SessionService::class] = new SessionService();
+        self::$services[CookieService::class] = new CookieService();
 
         // Additional services
         if (file_exists(self::SERVICES_CONFIG_FILE)) {

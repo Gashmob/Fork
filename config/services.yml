@@ -2,6 +2,7 @@
 # - RouterService
 # - RequestService
 # - SessionService
+# - CookieService
 #
 # Here you can add additional services that you need
 # Just give the class and namespace of your service : Name\Space\To\Your\Class
