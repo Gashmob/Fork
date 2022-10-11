@@ -30,6 +30,15 @@ class RouterService
     }
 
     /**
+     * @param string $route
+     * @return string|null
+     */
+    public function getRoute($route)
+    {
+        return $this->routes[$route];
+    }
+
+    /**
      * Dump all existing routes.
      *
      * @return array

@@ -6,6 +6,7 @@ use Exception;
 use Gashmob\Fork\services\RequestService;
 use Gashmob\Fork\services\RouterService;
 use Gashmob\Fork\services\ServiceManager;
+use Gashmob\Mdgen\MdGenEngine;
 
 class Kernel
 {
@@ -29,17 +30,18 @@ class Kernel
         if (!$router->hasRoute($route)) {
             throw new Exception('Page not found : ' . $route);
         }
-        // TODO
+        $file = $router->getRoute($route);
 
         // Pre-render file
-        // TODO
+        $engine = new MdGenEngine();
+        $engine->basePath(__DIR__ . '/../view/templates');
+        $engine->includePath(__DIR__ . '/../view/components');
+        $values = $engine->preRender($file);
 
         // Call controller if specified
         // TODO
 
         // Render file
-        // TODO
-
-        return 'ok';
+        return $engine->render($file, $values);
     }
 }
