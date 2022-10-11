@@ -2,8 +2,12 @@
 
 require_once '../vendor/autoload.php';
 
-use Gashmob\Fork\services\ServiceManager;
+use Gashmob\Fork\Kernel;
 
-ServiceManager::initialize();
+$kernel = new Kernel();
 
-var_dump(ServiceManager::listServices());
+try {
+    echo $kernel->render();
+} catch (Exception $e) {
+    echo $e->getMessage();
+}

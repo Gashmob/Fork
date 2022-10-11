@@ -58,9 +58,9 @@ class RouterService
                     } else if (is_file($dir . $file)) {
                         if (substr($file, -4) == '.mdt') {
                             if ($file == 'index.mdt') {
-                                $result[] = $baseUrl;
+                                $result[$baseUrl] = $dir . $file;
                             } else {
-                                $result[] = $baseUrl . substr($file, 0, -4);
+                                $result[$baseUrl . substr($file, 0, -4)] = $dir . $file;
                             }
                         }
                     }
