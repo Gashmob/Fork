@@ -2,18 +2,34 @@
 
 namespace Gashmob\Fork\services;
 
-use Gashmob\Fork\http\Request;
-
 class RequestService
 {
     /**
-     * @var Request
+     * @var string
      */
-    private $request;
+    public $method;
+
+    /**
+     * @var string
+     */
+    public $uri;
+
+    /**
+     * @var array
+     */
+    public $getParams;
+    /**
+     * @var array
+     */
+    public $postParams;
 
     public function __construct()
     {
-        $this->request = new Request();
+        $this->method = $_SERVER['REQUEST_METHOD'];
+        $this->uri = isset($_GET['page']) ? '/' . $_GET['page'] : '/';
+        $this->getParams = $_GET;
+        unset($this->getParams['page']);
+        $this->postParams = $_POST;
     }
 
     // _.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-._.-.
@@ -23,7 +39,7 @@ class RequestService
      */
     public function getMethod()
     {
-        return $this->request->method;
+        return $this->method;
     }
 
     /**
@@ -31,7 +47,7 @@ class RequestService
      */
     public function getUri()
     {
-        return $this->request->uri;
+        return $this->uri;
     }
 
     /**
@@ -41,12 +57,12 @@ class RequestService
      */
     public function get($key, $default = null)
     {
-        if (isset($this->request->getParams[$key])) {
-            return $this->request->getParams[$key];
+        if (isset($this->getParams[$key])) {
+            return $this->getParams[$key];
         }
 
-        if (isset($this->request->postParams[$key])) {
-            return $this->request->postParams[$key];
+        if (isset($this->postParams[$key])) {
+            return $this->postParams[$key];
         }
 
         return $default;
