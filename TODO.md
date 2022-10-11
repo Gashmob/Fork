@@ -31,7 +31,7 @@ All the works to do for version 3.0
 - [ ] Create AbstractController class
 - [ ] Create .env and .env.prod with Env class
 - [ ] Create python script (or node) in bin to manage src code
-- [ ] Create Request, Session and Cookie classes
+- [x] Create Request, Session and Cookie classes
 - [ ] Create ORM (in another repo | use composer)
 - [ ] Create firewall for secure requests
 - [ ] ...
