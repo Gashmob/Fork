@@ -28,6 +28,7 @@ abstract class ServiceManager
     {
         // Base services
         self::$services[RouterService::class] = new RouterService();
+        self::$services[RequestService::class] = new RequestService();
 
         // Additional services
         if (file_exists(self::SERVICES_CONFIG_FILE)) {

@@ -1,5 +1,6 @@
 # Some services are added by default by Fork (so you don't need to add them here manually) :
-# - Router
+# - RouterService
+# - RequestService
 #
 # Here you can add additional services that you need
 # Just give the class and namespace of your service : Name\Space\To\Your\Class
