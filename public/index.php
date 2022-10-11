@@ -6,4 +6,4 @@ use Gashmob\Fork\services\ServiceManager;
 
 ServiceManager::initialize();
 
-echo 'ok';
+var_dump(ServiceManager::listServices());
