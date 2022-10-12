@@ -4,7 +4,12 @@ RewriteEngine On
 RewriteRule ^([a-z0-9-/]*)$ public/index.php?page=$1 [L]
 
 # File protections
-# TODO
+RewriteRule ^config/(.*/)*.+\.yml - [F,L] # All config files
+RewriteRule ^bin/console          - [F,L] # All sources files
+RewriteRule ^fork/(.*/)*.+\.php   - [F,L]
+RewriteRule ^src/(.*/)*.+         - [F,L]
+RewriteRule ^vendor/(.*/)*.+      - [F,L]
+RewriteRule ^view/(.*/)*.+        - [F,L] # All view files
 
 # Other options
 Options All -Indexes
