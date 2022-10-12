@@ -2,7 +2,7 @@
 
 namespace Gashmob\Fork\services;
 
-class SessionService
+final class SessionService
 {
     public function __construct()
     {
@@ -16,7 +16,7 @@ class SessionService
      * @param mixed $value
      * @return SessionService
      */
-    public function set($key, $value)
+    public function set(string $key, $value): SessionService
     {
         $_SESSION[$key] = $value;
 
@@ -28,15 +28,15 @@ class SessionService
      * @param mixed|null $default
      * @return mixed|null
      */
-    public function get($key, $default = null)
+    public function get(string $key, $default = null)
     {
-        return isset($_SESSION[$key]) ? $_SESSION[$key] : $default;
+        return $_SESSION[$key] ?? $default;
     }
 
     /**
      * @return SessionService
      */
-    public function clear()
+    public function clear(): SessionService
     {
         session_destroy();
 

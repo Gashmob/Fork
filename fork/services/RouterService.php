@@ -2,7 +2,7 @@
 
 namespace Gashmob\Fork\services;
 
-class RouterService
+final class RouterService
 {
     const PAGES_DIR = __DIR__ . '/../../view/pages/';
 
@@ -24,7 +24,7 @@ class RouterService
      * @param string $route
      * @return bool
      */
-    public function hasRoute($route)
+    public function hasRoute(string $route): bool
     {
         if (empty($route)) {
             $route = '/';
@@ -39,7 +39,7 @@ class RouterService
      * @param string $route
      * @return string|null
      */
-    public function getRoute($route)
+    public function getRoute(string $route)
     {
         if (empty($route)) {
             $route = '/';
@@ -55,7 +55,7 @@ class RouterService
      *
      * @return array
      */
-    public function dump()
+    public function dump(): array
     {
         return $this->routes;
     }
@@ -66,7 +66,7 @@ class RouterService
      * @param string $dir
      * @return array
      */
-    private function fetchRoutes($dir = self::PAGES_DIR)
+    private function fetchRoutes(string $dir = self::PAGES_DIR): array
     {
         if (file_exists($dir)) {
             $files = scandir($dir);

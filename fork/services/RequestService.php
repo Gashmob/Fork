@@ -2,7 +2,7 @@
 
 namespace Gashmob\Fork\services;
 
-class RequestService
+final class RequestService
 {
     const METHOD_GET = 'GET';
     const METHOD_POST = 'POST';
@@ -53,7 +53,7 @@ class RequestService
     /**
      * @return string
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
@@ -61,7 +61,7 @@ class RequestService
     /**
      * @return string
      */
-    public function getLanguage()
+    public function getLanguage(): string
     {
         return $this->lang;
     }
@@ -69,7 +69,7 @@ class RequestService
     /**
      * @return string
      */
-    public function getUri()
+    public function getUri(): string
     {
         return $this->uri;
     }
@@ -87,7 +87,7 @@ class RequestService
      * @param mixed|null $default
      * @return mixed|null
      */
-    public function get($key, $default = null)
+    public function get(string $key, $default = null)
     {
         if (isset($this->getParams[$key])) {
             return $this->getParams[$key];

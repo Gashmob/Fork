@@ -49,7 +49,7 @@ abstract class ServiceManager
      * @param string $service
      * @return bool
      */
-    public static function hasService($service)
+    public static function hasService(string $service): bool
     {
         return isset(self::$services[$service]);
     }
@@ -61,7 +61,7 @@ abstract class ServiceManager
      * @param string $service
      * @return mixed|null
      */
-    public static function getService($service)
+    public static function getService(string $service)
     {
         if (isset(self::$services[$service])) {
             return self::$services[$service];
@@ -75,7 +75,7 @@ abstract class ServiceManager
      *
      * @return string[]
      */
-    public static function listServices()
+    public static function listServices(): array
     {
         return array_keys(self::$services);
     }

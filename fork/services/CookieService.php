@@ -2,7 +2,7 @@
 
 namespace Gashmob\Fork\services;
 
-class CookieService
+final class CookieService
 {
 
     public function __construct()
@@ -21,7 +21,13 @@ class CookieService
      * @param bool $httpOnly
      * @return CookieService
      */
-    public function set($name, $value, $expire = 0, $path = '/', $domain = null, $secure = false, $httpOnly = false)
+    public function set(string $name,
+                        string $value,
+                        int    $expire = 0,
+                        string $path = '/',
+                        string $domain = null,
+                        bool   $secure = false,
+                        bool   $httpOnly = false): CookieService
     {
         setcookie($name, $value, $expire, $path, $domain, $secure, $httpOnly);
 
@@ -33,8 +39,8 @@ class CookieService
      * @param mixed|null $default
      * @return mixed|null
      */
-    public function get($name, $default = null)
+    public function get(string $name, $default = null)
     {
-        return isset($_COOKIE[$name]) ? $_COOKIE[$name] : $default;
+        return $_COOKIE[$name] ?? $default;
     }
 }

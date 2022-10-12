@@ -7,5 +7,5 @@ abstract class AbstractResponse
     /**
      * @return string
      */
-    abstract public function handle();
+    abstract public function handle(): string;
 }
