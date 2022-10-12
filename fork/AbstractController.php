@@ -14,7 +14,7 @@ class AbstractController
      * @return RedirectResponse
      * @throws RouteNotFoundException
      */
-    private function redirect($route)
+    protected function redirect($route)
     {
         /** @var RouterService $router */
         $router = ServiceManager::getService(RouterService::class);
