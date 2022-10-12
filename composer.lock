@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c0d7a795c311c64dcb6aea928683a4d",
+    "content-hash": "313bdb000ba20a49315456b753dc8383",
     "packages": [
         {
             "name": "gashmob/mdgen",
