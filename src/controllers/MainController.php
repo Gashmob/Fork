@@ -14,10 +14,10 @@ class MainController extends AbstractController
      * @return RedirectResponse
      * @throws RouteNotFoundException
      */
-    public function get(RequestService $request)
+    public function get(RequestService $request): RedirectResponse
     {
         if ($request->getLanguage() === 'fr') {
-            return $this->redirect('/fr');
+            return $this->redirect('fr');
         }
 
         return $this->redirect('/en');

@@ -4,6 +4,9 @@ namespace Gashmob\Fork\services;
 
 class RequestService
 {
+    const METHOD_GET = 'GET';
+    const METHOD_POST = 'POST';
+
     /**
      * @var string
      */
@@ -20,6 +23,11 @@ class RequestService
     private $uri;
 
     /**
+     * @var string
+     */
+    private $baseUri;
+
+    /**
      * @var array
      */
     private $getParams;
@@ -33,6 +41,8 @@ class RequestService
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
         $this->uri = isset($_GET['page']) ? '/' . $_GET['page'] : '/';
+        $this->baseUri = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' .
+            substr($_SERVER['REQUEST_URI'], 1, strlen($_SERVER['REQUEST_URI']) - strlen($this->uri) - 1);
         $this->getParams = $_GET;
         unset($this->getParams['page']);
         $this->postParams = $_POST;
@@ -62,6 +72,14 @@ class RequestService
     public function getUri()
     {
         return $this->uri;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUri(): string
+    {
+        return $this->baseUri;
     }
 
     /**

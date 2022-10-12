@@ -7,8 +7,12 @@ use Gashmob\Fork\responses\RedirectResponse;
 use Gashmob\Fork\services\RouterService;
 use Gashmob\Fork\services\ServiceManager;
 
-class AbstractController
+abstract class AbstractController
 {
+    public function __construct()
+    {
+    }
+
     /**
      * @param string $route
      * @return RedirectResponse
@@ -18,6 +22,12 @@ class AbstractController
     {
         /** @var RouterService $router */
         $router = ServiceManager::getService(RouterService::class);
+
+        if (empty($route)) {
+            $route = '/';
+        } else if ($route[0] !== '/') {
+            $route = '/' . $route;
+        }
 
         if (!$router->hasRoute($route)) {
             throw new RouteNotFoundException($route);
