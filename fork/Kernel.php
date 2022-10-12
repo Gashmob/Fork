@@ -26,7 +26,7 @@ final class Kernel
      * @return string
      * @throws Exception
      */
-    public function render()
+    public function render(): string
     {
         // Get requested route
         /** @var RequestService $request */
@@ -78,7 +78,7 @@ final class Kernel
      * @return object
      * @throws ReflectionException
      */
-    private function constructController($controller)
+    private function constructController(string $controller)
     {
         $class = new ReflectionClass($controller);
 
@@ -94,7 +94,7 @@ final class Kernel
      * @return array|AbstractResponse
      * @throws ReflectionException
      */
-    private function callControllerMethod($controller, $method, $args)
+    private function callControllerMethod($controller, string $method, array $args)
     {
         $method = new ReflectionMethod($controller, $method);
 
@@ -106,7 +106,7 @@ final class Kernel
      * @param array $args
      * @return array
      */
-    private function getArgs($parameters, $args = [])
+    private function getArgs(array $parameters, array $args = []): array
     {
         $result = [];
 
