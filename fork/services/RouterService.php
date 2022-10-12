@@ -26,6 +26,12 @@ class RouterService
      */
     public function hasRoute($route)
     {
+        if (empty($route)) {
+            $route = '/';
+        } else if ($route[strlen($route) - 1] !== '/') {
+            $route .= '/';
+        }
+
         return isset($this->routes[$route]);
     }
 
@@ -35,6 +41,12 @@ class RouterService
      */
     public function getRoute($route)
     {
+        if (empty($route)) {
+            $route = '/';
+        } else if ($route[strlen($route) - 1] !== '/') {
+            $route .= '/';
+        }
+
         return $this->routes[$route];
     }
 
