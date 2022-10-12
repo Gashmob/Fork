@@ -28,7 +28,7 @@ All the works to do for version 3.0
             - arborescence of .mdt file...
 - [x] Create template engine (\*.mdt) (in another repo | use composer)
 - [x] Create Router
-- [ ] Create AbstractController class
+- [x] Create AbstractController class
 - [ ] Create .env and .env.prod with Env class
 - [ ] Create python script (or node) in bin to manage src code
 - [x] Create Request, Session and Cookie classes
