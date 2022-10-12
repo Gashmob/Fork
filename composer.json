@@ -16,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Gashmob\\Fork\\": "fork/"
+            "Gashmob\\Fork\\": "fork/",
+            "Controller": "src/controllers"
         }
     }
 }
