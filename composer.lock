@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c435e3ac3f17f6dd2d2952d2ea99d25",
+    "content-hash": "5c617465a19cb086ba6633554287d26e",
     "packages": [
+        {
+            "name": "gashmob/dotenv",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gashmob/DotEnv.git",
+                "reference": "22ee9168b0056900aa268776262f8da2f419bdfe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gashmob/DotEnv/zipball/22ee9168b0056900aa268776262f8da2f419bdfe",
+                "reference": "22ee9168b0056900aa268776262f8da2f419bdfe",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gashmob\\Dotenv\\": "src/",
+                    "Gashmob\\Dotenv\\Test\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Traini",
+                    "email": "kevin@ktraini.com"
+                }
+            ],
+            "description": "A php library to parse .env files to environment variables available in $_ENV and $_SERVER",
+            "support": {
+                "issues": "https://github.com/Gashmob/DotEnv/issues",
+                "source": "https://github.com/Gashmob/DotEnv/tree/v1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/gashmob",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-10-14T12:17:30+00:00"
+        },
         {
             "name": "gashmob/mdgen",
             "version": "v1.0",
