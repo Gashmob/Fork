@@ -1,5 +1,8 @@
 # Local for IDEs
 .idea
 
+# Specific to Fork
+cache
+
 # Composer
 vendor

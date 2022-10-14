@@ -3,6 +3,8 @@
 namespace Gashmob\Fork;
 
 use Exception;
+use Gashmob\Dotenv\Env;
+use Gashmob\Dotenv\exceptions\FileNotFoundException;
 use Gashmob\Fork\responses\AbstractResponse;
 use Gashmob\Fork\services\RequestService;
 use Gashmob\Fork\services\RouterService;
@@ -20,6 +22,21 @@ final class Kernel
     public function __construct()
     {
         ServiceManager::initialize();
+
+        // Load environment variables
+        try {
+            Env::load(__DIR__ . '/../.env');
+        } catch (FileNotFoundException $e) {
+            // Set default values
+            $_ENV['MODE'] = 'dev';
+        }
+        if ($_ENV['MODE'] === 'dev') {
+            try {
+                Env::load(__DIR__ . '/../.env.dev');
+            } catch (FileNotFoundException $e) {
+                // Do nothing
+            }
+        }
     }
 
     /**
@@ -45,6 +62,10 @@ final class Kernel
         $engine = new MdGenEngine();
         $engine->basePath(__DIR__ . '/../view/templates');
         $engine->includePath(__DIR__ . '/../view/components');
+        if ($_ENV['MODE'] === 'prod') {
+            $engine->cache(__DIR__ . '/../cache');
+        }
+
         $values = $engine->preRender($file);
 
         // Call controller if specified
