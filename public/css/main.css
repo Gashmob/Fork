@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+* {
+    font-family: Lato, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes background {
+    0% {
+        background-color: darkred;
+    }
+    12.5% {
+        background-color: orange;
+    }
+    25% {
+        background-color: yellow;
+    }
+    37.5% {
+        background-color: yellowgreen;
+    }
+    50% {
+        background-color: mediumaquamarine;
+    }
+    62.5% {
+        background-color: darkturquoise;
+    }
+    75% {
+        background-color: dodgerblue;
+    }
+    87.5% {
+        background-color: purple;
+    }
+    100% {
+        background-color: darkred;
+    }
+}
+
+body {
+    height: 100vh;
+    animation: background 30s infinite normal linear;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+img {
+    width: 15%;
+    border-radius: 1em;
+}
+
+h1 {
+    font-family: Lato, sans-serif;
+    font-size: 5em;
+}
