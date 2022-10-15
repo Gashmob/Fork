@@ -1,0 +1,159 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "5c617465a19cb086ba6633554287d26e",
+    "packages": [
+        {
+            "name": "gashmob/dotenv",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gashmob/DotEnv.git",
+                "reference": "22ee9168b0056900aa268776262f8da2f419bdfe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gashmob/DotEnv/zipball/22ee9168b0056900aa268776262f8da2f419bdfe",
+                "reference": "22ee9168b0056900aa268776262f8da2f419bdfe",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gashmob\\Dotenv\\": "src/",
+                    "Gashmob\\Dotenv\\Test\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Traini",
+                    "email": "kevin@ktraini.com"
+                }
+            ],
+            "description": "A php library to parse .env files to environment variables available in $_ENV and $_SERVER",
+            "support": {
+                "issues": "https://github.com/Gashmob/DotEnv/issues",
+                "source": "https://github.com/Gashmob/DotEnv/tree/v1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/gashmob",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-10-14T12:17:30+00:00"
+        },
+        {
+            "name": "gashmob/mdgen",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gashmob/MdGen.git",
+                "reference": "2865a49aabe3f7434fa76829860870fb97f5b138"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gashmob/MdGen/zipball/2865a49aabe3f7434fa76829860870fb97f5b138",
+                "reference": "2865a49aabe3f7434fa76829860870fb97f5b138",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gashmob\\Mdgen\\": "src/",
+                    "Gashmob\\Mdgen\\Test\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Traini",
+                    "email": "kevin@ktraini.com"
+                }
+            ],
+            "description": "Markdown template engine",
+            "support": {
+                "issues": "https://github.com/Gashmob/MdGen/issues",
+                "source": "https://github.com/Gashmob/MdGen/tree/v1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/gashmob",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-09-29T11:02:54+00:00"
+        },
+        {
+            "name": "gashmob/yaml-editor",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gashmob/Yaml-editor.git",
+                "reference": "bf07a181aa526d905994cd2edb89ef8a87a97a53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gashmob/Yaml-editor/zipball/bf07a181aa526d905994cd2edb89ef8a87a97a53",
+                "reference": "bf07a181aa526d905994cd2edb89ef8a87a97a53",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gashmob\\YamlEditor\\": "src/",
+                    "Gashmob\\YamlEditor\\Test\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Traini",
+                    "email": "kevin@ktraini.com"
+                }
+            ],
+            "description": "Php classes for editing yaml files",
+            "support": {
+                "issues": "https://github.com/Gashmob/Yaml-editor/issues",
+                "source": "https://github.com/Gashmob/Yaml-editor/tree/v2.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/gashmob",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-10-10T07:05:27+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.0"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

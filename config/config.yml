@@ -1,8 +1,0 @@
-database:
-  credentials:
-    host: "127.0.0.1"
-    user: "kevin"
-    password: "fG42.k!Xa80"
-    dbName: ""
-    port: 3306
-mod: "dev"

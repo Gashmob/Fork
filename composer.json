@@ -1,24 +1,24 @@
 {
     "name": "gashmob/fork",
-    "description": "A little framework for basic websites and APIs",
+    "description": "Php framework to create static website",
     "type": "project",
-    "license": "MIT",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Kevin Traini",
             "email": "kevin@ktraini.com"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "Fork\\": "fork/",
-            "Controller\\": "src/Controller"
-        }
-    },
     "require": {
         "php": ">=7.0",
-        "doctrine/annotations": "^1.10",
-        "twig/twig": "^3.0",
-        "gashmob/yaml-editor": "^1.2"
+        "gashmob/mdgen": "^1.0",
+        "gashmob/yaml-editor": "^2.0.2",
+        "gashmob/dotenv": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gashmob\\Fork\\": "fork/",
+            "Controller\\": "src/controllers"
+        }
     }
 }
