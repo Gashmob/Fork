@@ -60,8 +60,8 @@ final class Kernel
 
         // Pre-render file
         $engine = new MdGenEngine();
-        $engine->basePath(__DIR__ . '/../view/templates');
-        $engine->includePath(__DIR__ . '/../view/components');
+        $engine->basePath(__DIR__ . '/../view/templates/');
+        $engine->includePath(__DIR__ . '/../view/components/');
         if ($_ENV['MODE'] === 'prod') {
             $engine->cache(__DIR__ . '/../cache');
         }
